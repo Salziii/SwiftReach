@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./(components)/header/Header";
 import { Toaster } from "@/components/ui/sonner"
+import { toast } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -35,7 +37,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-         <Header />
          {children}
          <Toaster duration={5000} />
         </ThemeProvider>

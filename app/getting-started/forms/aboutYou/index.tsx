@@ -26,21 +26,31 @@ const AboutYou = (props: any) => {
 
     const res = await axios.post("/api/create-customer", {name: name, email: email})
 
-    const { customer_id } = res.data;
+    const { error, customer_id } = res.data;
 
-    setData({
-     ...data,
-     customer_id: customer_id,
-    });
+    if (error) {
+      
+      setLoading(false)
 
-    toast.info("Customer ID", {
-      description: customer_id,
-    })
+      toast.warning(error.title, {
+        description: error.description
+      })
 
-    setLoading(false);
+    } else {
+      setData({
+        ...data,
+        customer_id: customer_id,
+       });
+   
+       toast.info("Customer ID", {
+         description: customer_id,
+       })
+   
+       setLoading(false);
+   
+       button.submit();
+    }
 
-    button.submit();
-    
    } catch (error) {
     console.log(error);
    }

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default () => {
+
+ // WENN loggedIn: auf / schicken + Toast (Du bist bereits in einer Company)
+
  return (
   <article className="h-[100vh] flex flex-col justify-center">
    <div className="h-5/6 w-full flex">
