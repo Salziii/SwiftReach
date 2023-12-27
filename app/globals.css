@@ -4,34 +4,32 @@
 
 @layer base {
  :root {
-  --background: #EDEDED;
+  --background: #ededed;
   --foreground: #020817;
 
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
 
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: #020817;
 
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #020817;
 
-  --primary: #0F172A;
-  --primary-foreground: #F8FAFC;
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
 
-  --secondary: #F1F5F9;
-  --secondary-foreground: #0F172A;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
 
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
 
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
 
-  --accent: #F1F5F9;
-  --accent-foreground: #0F172A;
-
-  --destructive: #EF4444;
-  --destructive-foreground: #F8FAFC;
-
-  --border: #E2E8F0;
-  --input: #E2E8F0;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
   --ring: #020817;
 
   --radius: 0.5rem;
@@ -39,37 +37,36 @@
 
  .dark {
   --background: #171717;
-  --foreground: #F8FAFC;
+  --foreground: #f8fafc;
 
   --muted: #393939;
-  --muted-foreground: #94A3B8;
+  --muted-foreground: #94a3b8;
 
   --card: #272727;
-  --card-foreground: #F8FAFC;
+  --card-foreground: #f8fafc;
 
-  --popover: #1C1C1C;
-  --popover-foreground: #F8FAFC;
+  --popover: #1c1c1c;
+  --popover-foreground: #f8fafc;
 
   --border: #2b2b2b;
 
-  --input: #E2E8F0;
+  --input: #e2e8f0;
 
-  --primary: #F8FAFC;
-  --primary-foreground: #7E23CD;
- 
-  --secondary: #2D2D2D;
-  --secondary-foreground: #F8FAFC;
+  --primary: #f8fafc;
+  --primary-foreground: #7e23cd;
 
-  --accent: #2D2D2D;
-  --accent-foreground: #F8FAFC;
+  --secondary: #2d2d2d;
+  --secondary-foreground: #f8fafc;
 
-  --destructive: #7F1D1D;
-  --destructive-foreground: #F8FAFC;
+  --accent: #2d2d2d;
+  --accent-foreground: #f8fafc;
 
-  --ring: #D6D6D6;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f8fafc;
 
-  --radius: .5rem;
+  --ring: #d6d6d6;
 
+  --radius: 0.5rem;
  }
 }
 
@@ -83,4 +80,11 @@
   background-size: 850px;
   background-repeat: repeat;
  }
+}
+
+.bg-body {
+ @apply bg-background text-foreground;
+ background-image: url("/dark.png");
+ background-size: 850px;
+ background-repeat: repeat;
 }

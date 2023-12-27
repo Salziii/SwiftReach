@@ -7,5 +7,5 @@ export default function Profile({ params }: { params: { profile: string } }) {
 
     // ONLY FOREGIN PROFILES OF OWN COMPANY
 
-    return (<></>)
+    return (<>Profile of "{params.profile}" in own company</>)
 }
