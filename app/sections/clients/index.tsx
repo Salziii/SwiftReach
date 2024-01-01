@@ -81,6 +81,7 @@ export default function Clients() {
       }}
       initial={{ opacity: 0, scale: 0.75 }}
       whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
       className="flex justify-center text-5xl font-bold text-black"
      >
       Werde Einer Von Ihnen!
@@ -94,6 +95,7 @@ export default function Clients() {
       }}
       initial={{ opacity: 0, scale: 0.75 }}
       whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
       className="flex justify-center w-full"
      >
       <Link href="/getting-started">
