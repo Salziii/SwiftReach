@@ -14,18 +14,18 @@ import {
 import Image from "next/image";
 
 import {
- BookOpenIcon,
  FacebookIcon,
  GemIcon,
  GiftIcon,
  GithubIcon,
  Globe2,
  InfoIcon,
- LineChartIcon,
+ LineChart,
  MailWarningIcon,
  MousePointerSquareDashed,
  SearchCheckIcon,
  Smile,
+ Star,
  Ticket,
  TrainFrontTunnel,
 } from "lucide-react";
@@ -37,39 +37,39 @@ const aboutUsLinks: {
  icon: any;
 }[] = [
  {
-  title: "Our Story",
-  href: "/#story",
-  description: "The story of our company",
-  icon: <BookOpenIcon />,
+  title: "Unser Angebot",
+  href: "/#offer",
+  description: "Was Wir Zu Bieten Haben",
+  icon: <LineChart />,
  },
  {
-  title: "Clients",
+  title: "Rezensionen",
+  href: "/#reviews",
+  description: "Was Man Über Uns Sagt",
+  icon: <Star />,
+ },
+ {
+  title: "Kunden",
   href: "/#clients",
-  description: "Who we've worked with",
+  description: "Wer Mit Uns Arbeitet",
   icon: <Smile />,
  },
  {
-  title: "Reviews",
-  href: "/#reviews",
-  description: "What they say about us",
-  icon: <LineChartIcon />,
- },
- {
-  title: "Proposal",
-  href: "/#proposal",
-  description: "A small gift for you!",
+  title: "Geschenk",
+  href: "/#gift",
+  description: "Ein kleines Geschenk",
   icon: <GiftIcon />,
  },
  {
   title: "Social Media",
   href: "/#socialMedia",
-  description: "Where else we are present",
+  description: "Wo Wir Uns Zudem Treiben",
   icon: <FacebookIcon />,
  },
  {
   title: "Information",
   href: "/#information",
-  description: "Company Information",
+  description: "Unternehmens Infos",
   icon: <InfoIcon />,
  },
 ];
@@ -148,19 +148,19 @@ export function NavMenu() {
         <NavigationMenuLink asChild>
          <a
           className="h-full w-full p-6 flex flex-col justify-end select-none rounded-md bg-card no-underline outline-none shadow-lg hover:shadow-sm focus:shadow-sm"
-          href="/"
+          href="/#"
          >
           <Image src={"/logo.png"} alt={""} width={60} height={60} />
           <div className="mb-2 mt-4 text-lg font-medium">SwiftReach</div>
           <p className="text-sm leading-tight text-muted-foreground">
-           In A Swift, Reach New Horizons! Your gateway to success.
+           In A Swift, Reach New Horizons! <br /> Your Success Gateway
           </p>
          </a>
         </NavigationMenuLink>
        </div>
        <ul className="w-full grid grid-cols-2">
         {aboutUsLinks.map((e) => (
-         <li>
+         <li key={e.title}>
           <NavigationMenuLink asChild>
            <a
             href={e.href}

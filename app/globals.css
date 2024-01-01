@@ -53,10 +53,10 @@
   --input: #e2e8f0;
 
   --primary: #f8fafc;
-  --primary-foreground: #7e23cd;
+  --primary-foreground: #782DAC;
 
   --secondary: #2d2d2d;
-  --secondary-foreground: #f8fafc;
+  --secondary-foreground: #B133CE;
 
   --accent: #2d2d2d;
   --accent-foreground: #f8fafc;
@@ -74,17 +74,25 @@
  * {
   @apply border-border;
  }
+ html {
+  scroll-behavior: smooth;
+ }
  body {
   @apply bg-background text-foreground h-full w-full;
   background-image: url("/dark.png");
   background-size: 850px;
   background-repeat: repeat;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
  }
-}
-
-.bg-body {
- @apply bg-background text-foreground;
- background-image: url("/dark.png");
- background-size: 850px;
- background-repeat: repeat;
+ body::-webkit-scrollbar {
+   display: none;
+ }
+ .bg-body {
+  @apply bg-background text-foreground;
+  background-image: url("/dark.png");
+  background-size: 850px;
+  background-repeat: repeat;
+ }
 }
