@@ -1,22 +1,23 @@
-import Header from "./(components)/header/Header";
+import Footer from "./(components)/footer";
+import Header from "./(components)/header";
 import Clients from "./sections/clients";
-import Gift from "./sections/gift";
+import Strategy from "./sections/strategy";
 import Hero from "./sections/hero";
 import Offer from "./sections/offer";
 import Reviews from "./sections/reviews";
-import { motion } from "framer-motion";
 
 export default function Home() {
  return (
-  <>
+  <div >
    <Header />
    <div>
     <Hero />
     <Offer />
     <Reviews />
     <Clients />
-    <Gift />
+    <Strategy />
    </div>
-  </>
+   <Footer />
+  </div>
  );
 }

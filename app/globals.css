@@ -58,8 +58,8 @@
   --secondary: #2d2d2d;
   --secondary-foreground: #B133CE;
 
-  --accent: #2d2d2d;
-  --accent-foreground: #f8fafc;
+  --accent: #bbbbbb;
+  --accent-foreground: #000000;
 
   --destructive: #7f1d1d;
   --destructive-foreground: #f8fafc;
@@ -83,11 +83,6 @@
   background-size: 850px;
   background-repeat: repeat;
   overflow-x: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
- }
- body::-webkit-scrollbar {
-   display: none;
  }
  .bg-body {
   @apply bg-background text-foreground;
@@ -95,4 +90,17 @@
   background-size: 850px;
   background-repeat: repeat;
  }
+
+ .shadow-inner-all {
+  box-shadow: inset 0px 32px 40px -30px black, inset 0px -32px 40px -30px black;
+ }
+
+ .shadow-text-lg {
+  text-shadow: 4px 4px 16px black;
+ }
+
+ .shadow-text-sm {
+  text-shadow: 2px 2px 8px black;
+ }
+
 }

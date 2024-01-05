@@ -1,9 +1,10 @@
+import StartButton from "@/app/(components)/StartButton";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function SecondPage() {
  return (
-  <div className="h-full 2xl:h-screen w-full flex justify-center py-16">
+  <div className="h-screen w-full flex justify-center py-16">
    <div className="flex flex-col justify-center max-w-2xl">
     <motion.p
      transition={{
@@ -28,7 +29,7 @@ export default function SecondPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="pb-8 font-bold text-4xl sm:text-5xl"
+     className="pb-8 font-bold text-4xl sm:text-5xl shadow-text-lg"
     >
      Paid Advertising
     </motion.h1>
@@ -42,7 +43,7 @@ export default function SecondPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="flex flex-col gap-4 pb-8 font-normal text-md sm:text-2xl"
+     className="flex flex-col gap-4 pb-8 font-normal text-md sm:text-2xl shadow-text-sm"
     >
      <p>Werbung, nur Werbung</p>
      <p>
@@ -66,11 +67,7 @@ export default function SecondPage() {
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
     >
-     <Link href="/getting-started">
-      <button className="w-full font-semibold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-background text-foreground shadow-md hover:scale-105 hover:shadow-xl">
-       Jetzt Skalieren 🚀
-      </button>
-     </Link>
+     <StartButton className="bg-body">Jetzt Skalieren 🚀</StartButton>
     </motion.div>
    </div>
   </div>

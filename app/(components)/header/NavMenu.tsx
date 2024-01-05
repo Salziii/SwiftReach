@@ -19,6 +19,7 @@ import {
  GiftIcon,
  GithubIcon,
  Globe2,
+ Goal,
  InfoIcon,
  LineChart,
  MailWarningIcon,
@@ -55,23 +56,23 @@ const aboutUsLinks: {
   icon: <Smile />,
  },
  {
-  title: "Geschenk",
-  href: "/#gift",
-  description: "Ein kleines Geschenk",
-  icon: <GiftIcon />,
+  title: "Strategie",
+  href: "/#strategy",
+  description: "Wie wir sie zu Ihrem Ziel bringen",
+  icon: <Goal />,
  },
- {
-  title: "Social Media",
-  href: "/#socialMedia",
-  description: "Wo Wir Uns Zudem Treiben",
-  icon: <FacebookIcon />,
- },
- {
-  title: "Information",
-  href: "/#information",
-  description: "Unternehmens Infos",
-  icon: <InfoIcon />,
- },
+ // {
+ //  title: "Geschenk",
+ //  href: "/#gift",
+ //  description: "Ein kleines Geschenk",
+ //  icon: <GiftIcon />,
+ // },
+ // {
+ //  title: "Information",
+ //  href: "/#footer",
+ //  description: "Unternehmens Infos",
+ //  icon: <InfoIcon />,
+ // },
 ];
 
 const services: {

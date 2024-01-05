@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import React from 'react'
-import Header from '../(components)/header/Header'
+import Header from '../(components)/header'
 
 export const metadata: Metadata = {
  title: "Services"

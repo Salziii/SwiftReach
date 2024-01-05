@@ -1,11 +1,12 @@
 "use client";
 
+import StartButton from "@/app/(components)/StartButton";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function FirstPage() {
  return (
-  <div className="h-full 2xl:h-screen w-full flex justify-center py-16">
+  <div className="h-screen w-full flex justify-center py-16">
    <div className="flex flex-col justify-center max-w-2xl">
     <motion.h1
      transition={{
@@ -16,7 +17,7 @@ export default function FirstPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="pb-8 font-bold text-4xl sm:text-5xl"
+     className="pb-8 font-bold text-4xl sm:text-5xl shadow-text-lg"
     >
      Was wir für Ihr Unternehmen tun
     </motion.h1>
@@ -30,7 +31,7 @@ export default function FirstPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="flex flex-col gap-4 pb-8 font-normal text-md sm:text-2xl"
+     className="flex flex-col gap-4 pb-8 font-normal text-md sm:text-2xl shadow-text-sm"
     >
      <p>
       Wir führen neue Kunden direkt vor Ihre Tür durch gezielte Werbung auf
@@ -53,11 +54,7 @@ export default function FirstPage() {
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
     >
-     <Link href="/getting-started">
-      <button className="w-full font-semibold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-background text-foreground shadow-md hover:scale-105 hover:shadow-xl">
-       Jetzt Skalieren 🚀
-      </button>
-     </Link>
+     <StartButton className="bg-body">Jetzt Skalieren 🚀</StartButton>
     </motion.div>
    </div>
   </div>

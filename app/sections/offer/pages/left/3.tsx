@@ -1,3 +1,4 @@
+import StartButton from "@/app/(components)/StartButton";
 import { motion } from "framer-motion";
 import { Ban } from "lucide-react";
 import Link from "next/link";
@@ -24,7 +25,7 @@ export default function ThirdPage() {
  ];
 
  return (
-  <div className="h-full 2xl:h-screen w-full flex justify-center py-16">
+  <div className="h-screen w-full flex justify-center py-16">
    <div className="flex flex-col justify-center max-w-2xl">
     <motion.p
      transition={{
@@ -35,7 +36,7 @@ export default function ThirdPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="pb-2 font-normal text-lg sm:text-2xl"
+     className="pb-2 font-normal text-lg sm:text-2xl shadow-text-sm"
     >
      Ganz nach dem Motto
     </motion.p>
@@ -49,7 +50,7 @@ export default function ThirdPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="pb-4 font-bold text-3xl sm:text-4xl"
+     className="pb-4 font-bold text-3xl sm:text-4xl shadow-text-lg"
     >
      Meisterschaft ist der Schatten den die Hingabe wirft
     </motion.h1>
@@ -63,9 +64,9 @@ export default function ThirdPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="font-normal text-md sm:text-2xl pb-6"
+     className="font-normal text-md sm:text-2xl pb-6 shadow-text-sm"
     >
-     Also bieten wir nichts als Paid Advertising an...
+     Also bieten wir nichts außer Paid Advertising an...
     </motion.p>
     <div className="text-2xl font-bold pb-8">
      {nogos.map((nogo, i) => (
@@ -82,7 +83,7 @@ export default function ThirdPage() {
          whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
          viewport={{ once: true }}
         >
-         <Ban size={28} className="text-red-600" />
+         <Ban size={28} className="text-red-500" />
         </motion.div>
        </span>
        <motion.p
@@ -95,7 +96,7 @@ export default function ThirdPage() {
         initial={{ opacity: 0, scale: 0.75 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="flex flex-col justify-center"
+        className="flex flex-col justify-center shadow-text-sm"
        >
         {nogo}
        </motion.p>
@@ -113,11 +114,7 @@ export default function ThirdPage() {
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
     >
-     <Link href="/getting-started">
-      <button className="w-full font-semibold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-background text-foreground shadow-md hover:scale-105 hover:shadow-xl">
-       Jetzt Skalieren 🚀
-      </button>
-     </Link>
+     <StartButton className="bg-body">Jetzt Skalieren 🚀</StartButton>
     </motion.div>
    </div>
   </div>

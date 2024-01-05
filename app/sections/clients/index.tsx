@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion } from "framer-motion";
+import { DefaultMotion } from "@/app/(components)/motion";
+import StartButton from "@/app/(components)/StartButton";
 
 export default function Clients() {
  const clients = [
@@ -27,44 +28,27 @@ export default function Clients() {
  ];
 
  return (
-  <section className="w-screen bg-white text-black" id="clients">
-   <div className="flex flex-col pt-16 gap-10">
-    <motion.div
-     transition={{
-      type: "spring",
-      damping: 10,
-      stiffness: 100
-     }}
-     initial={{ opacity:0, scale: 0.75 }}
-     whileInView={{ opacity:1, scale: 1 }}
-     viewport={{ once: true }}
-     className="flex justify-center text-5xl font-bold text-black"
-    >
+  <section
+   className="w-screen bg-card text-white shadow-inner-all"
+   id="clients"
+  >
+   <div className="flex flex-col py-32">
+    <DefaultMotion className="flex justify-center text-3xl sm:text-6xl font-bold shadow-text-lg mb-32">
      Unsere Glücklichen Kunden
-    </motion.div>
-    <div className="flex justify-center">
-     <div className="w-3/4 grid grid-cols-4 gap-x-20 gap-y-10">
+    </DefaultMotion>
+    <div className="flex justify-center mb-32">
+     <div className="w-3/4 grid grid-cols-1 sm:grid-cols-4 gap-x-20 gap-y-10">
       {clients.map((client, i) => (
        <Link href={client.href} className="flex flex-col justify-center">
-        <motion.div
-         transition={{
-          type: "spring",
-          damping: 10,
-          stiffness: 100,
-          delay: i % 4 * 0.2
-         }}
-         initial={{ opacity: 0, scale: 0.75 }}
-         whileInView={{ opacity: 1, scale: 1 }}
-         viewport={{ once: true }}
-        >
+        <DefaultMotion delay={(i % 4) * 0.2}>
          <Image
           src={client.src}
-          className="transition transform cursor-pointer hover:scale-105 "
+          className="transition transform cursor-pointer hover:-translate-y-2 hover:scale-105 "
           alt=""
           height={183}
           width={885}
          />
-        </motion.div>
+        </DefaultMotion>
        </Link>
       ))}
       {Array.from({ length: 12 - clients.length }).map((_, i) => (
@@ -72,37 +56,12 @@ export default function Clients() {
       ))}
      </div>
     </div>
-    <div className="flex flex-col gap-6 py-16 ">
-     <motion.div
-      transition={{
-       type: "spring",
-       damping: 10,
-       stiffness: 100
-      }}
-      initial={{ opacity: 0, scale: 0.75 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      className="flex justify-center text-5xl font-bold text-black"
-     >
-      Werde Einer Von Ihnen!
-     </motion.div>
-     <motion.div
-      transition={{
-       type: "spring",
-       damping: 10,
-       stiffness: 100,
-       delay: 0.25,
-      }}
-      initial={{ opacity: 0, scale: 0.75 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      className="flex justify-center w-full"
-     >
-      <Link href="/getting-started">
-       <button className="w-96 font-semibold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-background text-foreground shadow-md hover:scale-105 hover:shadow-xl">
-        Heute Noch Starten 🚀
-       </button>
-      </Link>
-     </motion.div>
-    </div>
+    <DefaultMotion className="flex justify-center text-5xl font-bold shadow-text-lg mb-8">
+     Werde Einer Von Ihnen!
+    </DefaultMotion>
+    <DefaultMotion delay={0.25} className="flex justify-center w-full">
+     <StartButton className="bg-body w-96">Jetzt Skalieren 🚀</StartButton>
+    </DefaultMotion>
    </div>
   </section>
  );
