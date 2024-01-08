@@ -28,8 +28,8 @@ const steps = [
 
 export default function Strategy() {
  return (
-  <section className="w-screen" id="strategy">
-   <div className="w-screen flex flex-col justify-center my-20">
+  <section className="w-full" id="strategy">
+   <div className="w-full flex flex-col justify-center my-20">
     <DefaultMotion className="flex justify-center mb-6 text-5xl font-bold">
      Wie Wir Es Angehen
     </DefaultMotion>

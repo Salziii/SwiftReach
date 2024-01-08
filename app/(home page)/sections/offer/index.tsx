@@ -24,7 +24,7 @@ export default function Offer() {
 
  return (
   <section
-   className="flex flex-col 2xl:flex-row justify-center 2xl:justify-start w-screen px-5 bg-card text-white shadow-inner-all"
+   className="flex flex-col 2xl:flex-row justify-center 2xl:justify-start w-full bg-card text-white shadow-inner-all"
    id="offer"
   >
    <div className="left w-full 2xl:w-1/2">

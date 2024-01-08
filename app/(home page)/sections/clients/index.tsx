@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DefaultMotion } from "@/app/(components)/motion";
-import StartButton from "@/app/(components)/StartButton";
+import StartButton from "@/app/(home page)/(comonents)/StartButton";
 
 export default function Clients() {
  const clients = [
@@ -29,7 +29,7 @@ export default function Clients() {
 
  return (
   <section
-   className="w-screen bg-card text-white shadow-inner-all"
+   className="w-full bg-card text-white shadow-inner-all"
    id="clients"
   >
    <div className="flex flex-col py-32">

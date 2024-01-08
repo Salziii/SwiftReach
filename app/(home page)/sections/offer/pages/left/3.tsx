@@ -1,4 +1,4 @@
-import StartButton from "@/app/(components)/StartButton";
+import StartButton from "@/app/(home page)/(comonents)/StartButton";
 import { motion } from "framer-motion";
 import { Ban } from "lucide-react";
 import Link from "next/link";

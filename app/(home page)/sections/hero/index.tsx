@@ -4,12 +4,12 @@ import Image from "next/image";
 import { Brain, Eye, LineChartIcon, PiggyBankIcon } from "lucide-react";
 import Link from "next/link";
 import { DefaultMotion, FlyInMotion } from "@/app/(components)/motion";
-import StartButton from "@/app/(components)/StartButton";
+import StartButton from "@/app/(home page)/(comonents)/StartButton";
 
 export default function Hero() {
  return (
   <section
-   className="px-5 flex flex-col xl:flex-row justify-start w-screen min-h-screen"
+   className="flex flex-col xl:flex-row justify-start w-full min-h-screen"
    id="hero"
   >
    <div className="w-full xl:w-1/2 flex flex-col justify-center">

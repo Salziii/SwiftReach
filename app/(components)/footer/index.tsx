@@ -60,7 +60,7 @@ export default function Footer() {
      </div>
     </div>
    </div>
-   <div className="w-screen bg-popover flex justify-center shadow-2xl">
+   <div className="w-full bg-popover flex justify-center shadow-2xl">
     <div className="w-5/6 my-16 flex flex-col justify-center">
      <div className="flex">
       <div className="px-10 xl:px-32 flex flex-col justify-center border-r-2">
@@ -125,7 +125,7 @@ export default function Footer() {
      </div>
     </div>
    </div>
-   <div className="w-screen h-16 bg-popover flex flex-row justify-center">
+   <div className="w-full h-16 bg-popover flex flex-row justify-center">
     <div className="w-5/6 border-t-2 border-t-card flex flex-col justify-center">
      <div className="flex justify-center">
       <p>© 2024 SwiftReach</p>

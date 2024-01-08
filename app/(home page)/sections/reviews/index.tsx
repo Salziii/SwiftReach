@@ -15,8 +15,8 @@ import { DefaultMotion, RotateMotion } from "@/app/(components)/motion";
 
 export default function Reviews() {
  return (
-  <section className="w-screen" id="reviews">
-   <div className="w-screen flex flex-col justify-center my-10 sm:my-20">
+  <section className="w-full" id="reviews">
+   <div className="w-full flex flex-col justify-center my-10 sm:my-20">
     <RotateMotion className="flex justify-center mb-4 sm:mb-10 text-yellow-400">
      <Star className="h-24 sm:h-32" size={120} />
     </RotateMotion>

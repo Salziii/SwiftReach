@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 
 export default function Gift() {
  return (
-  <section className="w-screen" id="gift">
+  <section className="w-full" id="gift">
   </section>
  );
 }

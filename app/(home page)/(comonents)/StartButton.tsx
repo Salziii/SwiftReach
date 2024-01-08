@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { InlineWidget, PopupButton } from "react-calendly";
+import { PopupButton } from "react-calendly";
 
 export default function StartButton({ children, className }: { children: string, className?:string }) {
  const [el, setEl] = useState<HTMLElement | null>(null);
@@ -9,6 +9,7 @@ export default function StartButton({ children, className }: { children: string,
  useEffect(() => {
   if (document) setEl(document.getElementById("button"));
  }, []);
+
 
  return (
   <div id="button">
@@ -23,6 +24,7 @@ export default function StartButton({ children, className }: { children: string,
       hideLandingPageDetails: false,
       primaryColor: "B133CE",
       textColor: "f8fafc",
+      hideGdprBanner: true
      }}
      className={"w-full font-bold text-xl rounded-full py-3 transition transform cursor-pointer bg-transparent text-white border-2 border-white shadow-xl hover:scale-105 hover:shadow-2xl " + className}
     />

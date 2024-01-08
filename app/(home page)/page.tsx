@@ -1,5 +1,5 @@
-import Footer from "./(components)/footer";
-import Header from "./(components)/header";
+import Footer from "../(components)/footer";
+import Header from "../(components)/header";
 import Clients from "./sections/clients";
 import Strategy from "./sections/strategy";
 import Hero from "./sections/hero";
@@ -8,7 +8,7 @@ import Reviews from "./sections/reviews";
 
 export default function Home() {
  return (
-  <div >
+  <div className="w-full h-full">
    <Header />
    <div>
     <Hero />
