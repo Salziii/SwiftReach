@@ -3,41 +3,44 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import CookieProvider from "./(components)/CookieProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
- title: {
-  default: "SwiftReach",
-  template: "%s | SwiftReach",
- },
- description: "In A Swift, Reach New Horizons!",
- icons: [
-  {
-   url: "/logo.png",
-   href: "/logo.png",
+  title: {
+    default: "SwiftReach",
+    template: "%s | SwiftReach",
   },
- ],
+  description: "In A Swift, Reach New Horizons!",
+  icons: [
+    {
+      url: "/logo.png",
+      href: "/logo.png",
+    },
+  ],
 };
 
 export default function RootLayout({
- children,
+  children,
 }: {
- children: React.ReactNode;
+  children: React.ReactNode;
 }) {
- return (
-  <html lang="en">
-   <body className={inter.className}>
-   <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-     >
-      {children}
-      <Toaster duration={5000} />
-     </ThemeProvider>
-   </body>
-  </html>
- );
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <CookieProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster duration={5000} />
+          </ThemeProvider>
+        </CookieProvider>
+      </body>
+    </html>
+  );
 }

@@ -13,7 +13,7 @@ export default function Forms() {
  const router = useRouter();
 
  const [data, setData] = useState({
-  customer_id: "",
+  id: "",
  });
 
  const [active, setActive] = useState(0);
