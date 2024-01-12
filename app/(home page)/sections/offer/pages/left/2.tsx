@@ -1,6 +1,5 @@
 import StartButton from "@/app/(home page)/(comonents)/StartButton";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function SecondPage() {
  return (

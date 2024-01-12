@@ -10,7 +10,6 @@ export default function StartButton({ children, className }: { children: string,
   if (document) setEl(document.getElementById("button"));
  }, []);
 
-
  return (
   <div id="button">
    {el ? (
@@ -36,7 +35,7 @@ export default function StartButton({ children, className }: { children: string,
 }
 
 {/* <Link href="/getting-started">
-      <button className="w-full font-bold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-transparent text-white border-2 border-white shadow-xl hover:scale-105 hover:shadow-2xl">
-       Jetzt Skalieren 🚀
-      </button>
-     </Link> */}
+ <button className="w-full font-bold text-xl rounded-full py-3 transition transform cursor-pointer bg-body bg-transparent text-white border-2 border-white shadow-xl hover:scale-105 hover:shadow-2xl">
+  Jetzt Skalieren 🚀
+ </button>
+</Link> */}

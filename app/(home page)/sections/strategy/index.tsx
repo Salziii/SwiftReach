@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { DefaultMotion } from "@/app/(components)/motion";
 
@@ -41,7 +39,7 @@ export default function Strategy() {
     <div className="flex justify-center">
      <div className="flex justify-between w-4/5">
       {steps.map((step, i) => (
-       <div className="w-full group">
+       <div key={i} className="w-full group">
         <DefaultMotion delay={0.1 * i} className="w-full flex justify-center">
          <Image
           className="mb-2 transition transform group-hover:-translate-y-2 group-hover:scale-105"

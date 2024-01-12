@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { Brain, Eye, LineChartIcon, PiggyBankIcon } from "lucide-react";
-import Link from "next/link";
+import { Eye, LineChartIcon, PiggyBankIcon } from "lucide-react";
 import { DefaultMotion, FlyInMotion } from "@/app/(components)/motion";
 import StartButton from "@/app/(home page)/(comonents)/StartButton";
 

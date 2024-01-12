@@ -1,5 +1,3 @@
-"use client";
-
 import {
  Github,
  Instagram,
@@ -13,7 +11,7 @@ import { RiMailSendLine } from "react-icons/ri";
 import Link from "next/link";
 import Image from "next/image";
 
-import { DefaultMotion, RotateMotion } from "../motion";
+import { RotateMotion } from "../motion";
 
 const socials = [
  {
@@ -49,7 +47,7 @@ export default function Footer() {
     <div className="flex justify-center">
      <div className="flex justify-between w-1/3">
       {socials.map((social, i) => (
-       <RotateMotion delay={i * 0.2}>
+       <RotateMotion key={i} delay={i * 0.2}>
         <Link href={social.link}>
          <div className="border-muted transition transform cursor-pointer border-2 rounded-full shadow-md w-20 h-20 hover:bg-muted hover:border-0 hover:opacity-90 hover:shadow-xl hover:-translate-y-1">
           {social.icon}

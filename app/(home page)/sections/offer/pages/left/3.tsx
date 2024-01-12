@@ -1,19 +1,8 @@
 import StartButton from "@/app/(home page)/(comonents)/StartButton";
 import { motion } from "framer-motion";
 import { Ban } from "lucide-react";
-import Link from "next/link";
 
 export default function ThirdPage() {
- // "Im Tanz der Hingabe entsteht das Meisterstück!",
- // "In der Kunst des Meisterns ist Hingabe das fehlende Puzzlestück!",
- // "Mit Hingabe zum Gipfel des Meisterwerks!",
- // "Meisterhaftes Handwerk beginnt mit der Poesie der Passion!",
- // "Das Geheimnis der Meisterschaft liegt in der Verbundenheit zum Detail!",
- // "Enthusiasmus ist der Pinsel, der das Gemälde der Meisterschaft zum Leben erweckt!",
- // "Meisterschaft ist der Schatten, den die Hingabe wirft!",
- // "Das Geheimnis des Meisterseins? Hingabe in jedem Pinselstrich!",
- // "Mit Hingabe gewebt, wird das Kunstwerk zum Meisterstück!",
- // "Hingabe ist der harmonische Akkord in der Symphonie des Meisterns!"
 
  const nogos = [
   "Web Design",

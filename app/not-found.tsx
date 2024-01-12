@@ -1,10 +1,3 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-
-export default function Home() {
-
- useRouter().push("/")
-
+export default function NotFound() {
  return null;
 }
