@@ -4,38 +4,6 @@
 
 @layer base {
  :root {
-  --background: #ededed;
-  --foreground: #020817;
-
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-
-  --card: #ffffff;
-  --card-foreground: #020817;
-
-  --popover: #ffffff;
-  --popover-foreground: #020817;
-
-  --primary: #0f172a;
-  --primary-foreground: #f8fafc;
-
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-
-  --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
-
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #020817;
-
-  --radius: 0.5rem;
- }
-
- .dark {
   --background: #171717;
   --foreground: #f8fafc;
 
@@ -53,10 +21,10 @@
   --input: #e2e8f0;
 
   --primary: #f8fafc;
-  --primary-foreground: #782DAC;
+  --primary-foreground: #782dac;
 
   --secondary: #2d2d2d;
-  --secondary-foreground: #B133CE;
+  --secondary-foreground: #b133ce;
 
   --accent: #bbbbbb;
   --accent-foreground: #000000;
@@ -84,7 +52,6 @@
   background-image: url("/dark.png");
   background-size: 850px;
   background-repeat: repeat;
-  
  }
  .bg-body {
   @apply bg-background text-foreground;
@@ -104,5 +71,4 @@
  .shadow-text-sm {
   text-shadow: 2px 2px 8px black;
  }
- 
 }
