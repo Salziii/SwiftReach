@@ -4,7 +4,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Inter({
+ subsets: ["latin"],
+ weight: "400"
+});
 
 export const metadata: Metadata = {
  title: {
@@ -26,8 +29,8 @@ export default function RootLayout({
  children: React.ReactNode;
 }) {
  return (
-  <html lang="en">
-   <body className={inter.className}>
+  <html className="scroll-smooth w-full h-full" lang="de">
+   <body className={font.className + " w-screen"}>
     <ThemeProvider
      attribute="class"
      defaultTheme="dark"

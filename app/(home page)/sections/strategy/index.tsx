@@ -32,9 +32,7 @@ export default function Strategy() {
      Wie Wir Es Angehen
     </DefaultMotion>
     <DefaultMotion className="flex justify-center mb-16 text-2xl font-normal">
-     Unser erfahrenes Mediateam verwaltet die Werbekampagnen für Ihr Unternehmen
-     auf Plattformen, wie Facebook, Instagram, Snapchat, Pinterest, TikTok,
-     Taboola, Outbrain usw.
+     Unser Medienteam verwaltet die Werbeanzeigen für Ihr Unternehmen auf Plattformen, wie Facebook, Instagram, YouTube, Google, Pinterest, TikTok usw.
     </DefaultMotion>
     <div className="flex justify-center">
      <div className="flex justify-between w-4/5">

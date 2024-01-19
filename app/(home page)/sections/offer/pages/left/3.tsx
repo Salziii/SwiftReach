@@ -15,7 +15,7 @@ export default function ThirdPage() {
 
  return (
   <div className="h-screen w-full flex justify-center py-16">
-   <div className="flex flex-col justify-center max-w-2xl">
+   <div className="flex flex-col justify-center max-w-3xl">
     <motion.p
      transition={{
       type: "spring",

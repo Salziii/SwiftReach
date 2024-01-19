@@ -43,9 +43,9 @@ const socials = [
 export default function Footer() {
  return (
   <section id="footer">
-   <div className="w-full h-32 bg-card flex flex-col justify-center shadow-2xl">
+   <div className="w-full h-32 bg-card hidden sm:flex flex-col justify-center shadow-2xl">
     <div className="flex justify-center">
-     <div className="flex justify-between w-1/3">
+     <div className="flex justify-between mx-10 md:mx-0 w-full md:w-2/3">
       {socials.map((social, i) => (
        <RotateMotion key={i} delay={i * 0.2}>
         <Link href={social.link}>
@@ -54,14 +54,14 @@ export default function Footer() {
          </div>
         </Link>
        </RotateMotion>
-      ))}
+      ))} 
      </div>
     </div>
    </div>
    <div className="w-full bg-popover flex justify-center shadow-2xl">
     <div className="w-5/6 my-16 flex flex-col justify-center">
-     <div className="flex">
-      <div className="px-10 xl:px-32 flex flex-col justify-center border-r-2">
+     <div className="flex flex-col xl:flex-row p-0">
+      <div className="pb-12 xl:pb-0 px-10 xl:px-32 hidden md:flex flex-col justify-center xl:border-r-2">
        <Link href="/">
         <h1 className="flex justify-center gap-4">
          <Image
@@ -77,24 +77,24 @@ export default function Footer() {
         </h1>
        </Link>
       </div>
-      <div className="w-full flex justify-between px-10 xl:px-32">
+      <div className="w-full flex flex-col md:flex-row gap-10 justify-around px-10 xl:px-32">
        <div>
-        <h1 className="text-xl font-semibold mb-4">Unternehmen</h1>
+        <h1 className="text-2xl font-semibold mb-4 flex justify-center">Unternehmen</h1>
         <div className="flex flex-col gap-2">
          <Link
-          className="flex justify-center transition hover:opacity-75"
           href="/imprint"
+          className="flex justify-center cursor-pointer transition hover:opacity-75"
          >
-          Impressum
+          <p className="mr-2">Impressum</p>
          </Link>
         </div>
        </div>
        <div>
-        <h1 className="text-xl font-semibold mb-4">Kontakt</h1>
+        <h1 className="text-2xl font-semibold mb-4 flex justify-center">Kontakt</h1>
         <div className="flex flex-col gap-2">
          <a
           href="mailto:contact@swiftreach.de"
-          className="flex cursor-pointer transition hover:opacity-75"
+          className="flex justify-center cursor-pointer transition hover:opacity-75"
          >
           <p className="mr-2">contact@swiftreach.de</p>
           <div className="flex flex-col justify-center">
@@ -103,18 +103,18 @@ export default function Footer() {
          </a>
          <a
           href="tel:+491788688792"
-          className="flex cursor-pointer transition hover:opacity-75"
+          className="flex justify-center cursor-pointer transition hover:opacity-75"
          >
           <p className="mr-2">+49 (0) 178 8688792</p>
           <div className="flex flex-col justify-center">
            <BsTelephoneOutbound  className="w-4" />
           </div>
          </a>
-         <p>@swift.reach</p>
+         <p className="flex justify-center">@swift.reach</p>
         </div>
        </div>
-       <div className="flex flex-col justify-center">
-        <h1 className="text-xl font-semibold mb-5">Immer Am Neustem Stand</h1>
+       <div className="hidden flex-col justify-center">
+        <h1 className="text-2xl font-semibold mb-5">Immer Am Neustem Stand</h1>
         <input className="px-3 py-1 mb-2 rounded-lg" placeholder="Name" />
         <input className="px-3 py-1 mb-2 rounded-lg" placeholder="E-Mail" />
         <button className="bg-card py-1 rounded-lg">Abbonieren</button>
@@ -129,7 +129,7 @@ export default function Footer() {
       <p>© 2024 SwiftReach</p>
      </div>
     </div>
-   </div>
+   </div> 
   </section>
  );
 }

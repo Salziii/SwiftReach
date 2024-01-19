@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function FirstPage() {
  return (
   <div className="h-screen w-full flex justify-center py-16">
-   <div className="flex flex-col justify-center max-w-2xl">
+   <div className="flex flex-col justify-center max-w-3xl">
     <motion.h1
      transition={{
       type: "spring",
@@ -31,8 +31,7 @@ export default function FirstPage() {
      className="flex flex-col gap-4 pb-8 font-normal text-md sm:text-2xl shadow-text-sm"
     >
      <p>
-      Wir führen neue Kunden direkt vor Ihre Tür durch gezielte Werbung auf
-      Plattformen wie Google, YouTube, Facebook & Instagram
+      Wir führen neue Kunden durch zielgerichtete Werbung direkt vor Ihre Tür.
      </p>
      <p>
       Das ermöglicht es Ihnen, sich auf das Herzstück Ihres Geschäfts zu

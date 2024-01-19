@@ -5,7 +5,7 @@
 @layer base {
  :root {
   --background: #171717;
-  --foreground: #f8fafc;
+  --foreground: #ffffff;
 
   --muted: #393939;
   --muted-foreground: #94a3b8;
@@ -45,10 +45,12 @@
   padding: 0;
  }
  html {
-  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%
  }
  body {
-  @apply bg-background text-foreground h-full w-full;
+  @apply bg-background text-foreground w-full h-full;
+  overflow-x: hidden;
   background-image: url("/dark.png");
   background-size: 850px;
   background-repeat: repeat;
@@ -65,7 +67,7 @@
  }
 
  .shadow-text-lg {
-  text-shadow: 4px 4px 16px black;
+  text-shadow: 3px 3px 14px black;
  }
 
  .shadow-text-sm {

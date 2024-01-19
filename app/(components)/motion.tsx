@@ -13,7 +13,7 @@ export function DefaultMotion({ delay, children, className }: MotionDivProps) {
     type: "spring",
     damping: 10,
     stiffness: 100,
-    delay: delay ?? 0,
+    delay: 0,
    }}
    initial={{ opacity: 0, scale: 0.75 }}
    whileInView={{ opacity: 1, scale: 1 }}

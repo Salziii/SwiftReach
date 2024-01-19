@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function SecondPage() {
  return (
   <div className="h-screen w-full flex justify-center py-16">
-   <div className="flex flex-col justify-center max-w-2xl">
+   <div className="flex flex-col justify-center max-w-3xl">
     <motion.p
      transition={{
       type: "spring",
@@ -14,7 +14,7 @@ export default function SecondPage() {
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
      viewport={{ once: true }}
-     className="pb-2 font-normal text-lg sm:text-2xl"
+     className="pb-2 font-normal text-lg sm:text-2xl shadow-text-sm"
     >
      Was wir anbieten?
     </motion.p>
