@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import useLocomotiveScroll from "@/lib/hooks/useLokomotiveScroll";
 
 const font = Inter({
  subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
 }) {
  return (
   <html className="scroll-smooth w-full h-full" lang="de">
-   <body className={font.className + " w-screen"}>
+   <body className={font.className + " w-screen scrollbar-hidden"}>
     <ThemeProvider
      attribute="class"
      defaultTheme="dark"

@@ -42,7 +42,7 @@ const socials = [
 
 export default function Footer() {
  return (
-  <section id="footer">
+  <section id="footer" data-scroll-section>
    <div className="w-full h-32 bg-card hidden sm:flex flex-col justify-center shadow-2xl">
     <div className="flex justify-center">
      <div className="flex justify-between mx-10 md:mx-0 w-full md:w-2/3">

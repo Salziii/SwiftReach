@@ -20,7 +20,7 @@ export default function ThirdPage() {
      transition={{
       type: "spring",
       stiffness: 40,
-      damping: 10,
+      damping: 10
      }}
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
@@ -33,8 +33,7 @@ export default function ThirdPage() {
      transition={{
       type: "spring",
       stiffness: 40,
-      damping: 10,
-      delay: 0.05,
+      damping: 10
      }}
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
@@ -47,8 +46,7 @@ export default function ThirdPage() {
      transition={{
       type: "spring",
       stiffness: 40,
-      damping: 10,
-      delay: 0.1,
+      damping: 10
      }}
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}
@@ -66,7 +64,7 @@ export default function ThirdPage() {
           type: "spring",
           stiffness: 40,
           damping: 10,
-          delay: 0.1 * i + 0.2,
+          delay: 0.1 * i,
          }}
          initial={{ opacity: 0, rotateZ: 360, scale: 0.75 }}
          whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
@@ -80,7 +78,7 @@ export default function ThirdPage() {
          type: "spring",
          stiffness: 40,
          damping: 10,
-         delay: 0.1 * i + 0.2,
+         delay: 0.1 * i,
         }}
         initial={{ opacity: 0, scale: 0.75 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -97,7 +95,7 @@ export default function ThirdPage() {
       type: "spring",
       duration: 0.5,
       damping: 10,
-      delay: 0.05 * nogos.length + 0.2,
+      delay: 0.05 * nogos.length,
      }}
      initial={{ opacity: 0, scale: 0.75 }}
      whileInView={{ opacity: 1, scale: 1 }}

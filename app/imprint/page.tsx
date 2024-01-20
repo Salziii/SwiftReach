@@ -3,8 +3,10 @@
 import { RiMailSendLine } from "react-icons/ri";
 import Footer from "../(components)/footer";
 import { BsTelephoneOutbound } from "react-icons/bs";
+import useLocomotiveScroll from "@/lib/hooks/useLokomotiveScroll";
 
 export default function Imprint() {
+
  return (
   <>
    <section className="h-screen w-sceen flex justify-center">
