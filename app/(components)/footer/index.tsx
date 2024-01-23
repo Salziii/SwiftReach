@@ -1,3 +1,5 @@
+"use client";
+
 import {
  Github,
  Instagram,
@@ -8,10 +10,11 @@ import { FaXTwitter } from "react-icons/fa6";
 import { BsTelephoneOutbound } from "react-icons/bs";
 import { RiMailSendLine } from "react-icons/ri";
 
-import Link from "next/link";
 import Image from "next/image";
 
 import { RotateMotion } from "../motion";
+import TransitionLink from "../transition/link";
+import Link from "../transition/link";
 
 const socials = [
  {

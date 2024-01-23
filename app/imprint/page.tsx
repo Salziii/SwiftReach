@@ -1,12 +1,8 @@
-"use client";
-
 import { RiMailSendLine } from "react-icons/ri";
 import Footer from "../(components)/footer";
 import { BsTelephoneOutbound } from "react-icons/bs";
-import useLocomotiveScroll from "@/lib/hooks/useLokomotiveScroll";
 
 export default function Imprint() {
-
  return (
   <>
    <section className="h-screen w-sceen flex justify-center">
@@ -59,7 +55,7 @@ export default function Imprint() {
       <h3 className="text-3xl font-medium pb-6">Urheberrechts- oder Copyrightsverletzungen</h3>
       <p>Bei Anfragen zu Urheberrechtsverletzungen richten Sie sich bitte an contact@swiftreach.de. Wir werden Verstöße und Anfragen so schnell wie möglich bearbeiten.</p>
      </div>
-     
+
     </div>
     {/* <div className="h-full flex flex-col justify-center">
      Marc Trautwein <br />

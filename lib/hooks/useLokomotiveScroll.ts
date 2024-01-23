@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { LocomotiveScrollOptions, Scroll } from "react-locomotive-scroll";
+import { usePathname, useRouter } from "next/navigation";
 
 type UseLocomotiveScrollHook = [React.RefObject<Scroll>];
 
@@ -10,6 +11,8 @@ const useLocomotiveScroll = ({
  ...otherProps
 }: Omit<LocomotiveScrollOptions, "el">): UseLocomotiveScrollHook => {
  const locomotiveScrollRef = useRef<Scroll | null>(null);
+
+ const router = useRouter();
 
  useEffect(() => {
   (async () => {
@@ -28,6 +31,7 @@ const useLocomotiveScroll = ({
    locomotiveScrollRef.current = new LocomotiveScroll({
     ...otherProps,
     el: dataScrollContainer ?? undefined,
+    reloadOnContextChange: true
    });
 
    return () => {

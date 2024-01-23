@@ -2,10 +2,12 @@ import Image from "next/image";
 import { Eye, LineChartIcon, PiggyBank, Ruler, Users2 } from "lucide-react";
 import StartButton from "@/app/(home page)/(comonents)/StartButton";
 import { TypeAnimation } from "react-type-animation";
+import ScrollHint from "../../(comonents)/ScrollHint";
 
 export default function Hero() {
  return (
   <section className="w-full h-screen shadow-inner-b z-30" data-scroll-section>
+   <ScrollHint />
    <div
     className="flex flex-col xl:flex-row justify-start"
     data-scroll
