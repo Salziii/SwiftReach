@@ -14,6 +14,7 @@ export default function Forms() {
 
  const [data, setData] = useState({
   id: "",
+  painpoints: []
  });
 
  const [active, setActive] = useState(0);
