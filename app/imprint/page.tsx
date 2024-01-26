@@ -15,14 +15,14 @@ export default function Imprint() {
       <h3 className="text-3xl font-medium pb-6 flex">Information</h3>
       <p className="font-bold flex">SwiftReach</p>
       <p className="mt-2 flex">Marc Trautwein</p>
-      <p className="mt-2 flex">Pfarrer-Baumgartner-Straße 9</p>
+      <p className="mt-2 flex">Pfarrer-Baumgartner-Straße 7</p>
       <p className="flex">Burglengenfled 93133</p>
       <p className="flex">Bayern, Deutschland</p>
      </div>
      <div className="mt-16">
       <h3 className="text-3xl font-medium pb-6">Inhaltlich Verantwortlicher ( RStV § 55 )</h3>
-      <p className="mt-2">Marc Trautwein</p>
-      <p className="mt-2">Pfarrer-Baumgartner-Straße 9</p>
+      <p className="mt-2">Nick Singerer</p>
+      <p className="mt-2">Sonnenpark 10</p>
       <p>Burglengenfled 93133</p>
       <p>Bayern, Deutschland</p>
      </div>

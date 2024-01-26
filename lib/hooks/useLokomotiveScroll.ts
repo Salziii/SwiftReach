@@ -12,8 +12,6 @@ const useLocomotiveScroll = ({
 }: Omit<LocomotiveScrollOptions, "el">): UseLocomotiveScrollHook => {
  const locomotiveScrollRef = useRef<Scroll | null>(null);
 
- const router = useRouter();
-
  useEffect(() => {
   (async () => {
    const LocomotiveScroll = (await import("locomotive-scroll")).default;

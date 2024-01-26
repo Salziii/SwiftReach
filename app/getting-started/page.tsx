@@ -1,38 +1,26 @@
-"use client";
+"use client"
 
-import useLocomotiveScroll from "@/lib/hooks/useLokomotiveScroll";
+import Forms from "./Forms";
 import Footer from "../(components)/footer";
+import useLocomotiveScroll from "@/lib/hooks/useLokomotiveScroll";
 
-export default function Home() {
- 
+export default () => {
+
+ // WENN loggedIn: auf / schicken + Toast (Du bist bereits in einer Company)
+
  useLocomotiveScroll({
   smooth: true,
   smoothMobile: true,
  });
 
- return <div data-scroll-container>
-  <div className="min-h-screen"></div>
+ return (
+  <div data-scroll-container>
+   <article className="h-screen flex flex-col justify-center">
+   <div className="h-5/6 w-full flex">
+    <Forms />
+   </div>
+  </article>
   <Footer />
- </div>
-}
-
-{/* <div id="button">
-   {el ? (
-    <PopupButton
-     url="https://calendly.com/administration-_b0/discovery-call"
-     rootElement={el}
-     text={children}
-     pageSettings={{
-      backgroundColor: "272727",
-      hideEventTypeDetails: false,
-      hideLandingPageDetails: false,
-      primaryColor: "B133CE",
-      textColor: "f8fafc",
-      hideGdprBanner: true
-     }}
-     className={"w-full font-bold text-xl rounded-full py-3 transition transform cursor-pointer bg-transparent text-white border-2 border-white shadow-xl hover:scale-105 hover:shadow-2xl " + className}
-    />
-   ) : (
-    <></>
-   )}
-  </div> */}
+  </div>
+ );
+};
