@@ -59,27 +59,12 @@ const Services = ({
  }, []);
 
  async function submit() {
-  setLoading(true);
-
-  if (selectedServices.map((i) => i).length !== 0) {
-   setData({
-    ...data,
-    services: selectedServices.map((i) => services.at(i).id),
-   });
-
-   setLoading(false);
-
-   button.submit();
-  } else {
-   setLoading(false);
-
-   toast.warning("Whoops!", {
-    description: "Select At Least One Service!",
-   });
-  }
+  setData({
+   ...data,
+   services: selectedServices.map((i) => services.at(i).id),
+  });
+  return true;
  }
-
- console.log(selectedServices)
 
  return (
   <div className="w-5/6 flex flex-col justify-center">

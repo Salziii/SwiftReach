@@ -35,26 +35,11 @@ const Painpoints = (props: any) => {
  }, []);
 
  async function submit() {
-  setLoading(true);
-
-  if (selectedPainpoints.map((i) => i).length !== 0) {
-
-   setData({
-    ...data,
-    painpoints: selectedPainpoints.map((i) => painpoints.at(i).id),
-   });
-
-   setLoading(false);
-
-   button.submit();
-
-  } else {
-   setLoading(false);
-
-   toast.warning("Whoops!", {
-    description: "Select At Least One Painpoint!",
-   });
-  }
+  setData({
+   ...data,
+   painpoints: selectedPainpoints.map((i) => painpoints.at(i).id),
+  });
+  return true;
  }
 
  return (

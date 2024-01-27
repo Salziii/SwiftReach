@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
 
  const painpointId = request.nextUrl.searchParams.get("painpointId")
 
- if (!painpointId) return NextResponse.json({ error: "Provide A Painpint ID!" }, { status: 500 })
+ if (!painpointId) return NextResponse.json({ error: "Provide A Painpint ID!" }, { status: 400 })
 
  const services: any[] = [];
 

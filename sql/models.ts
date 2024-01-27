@@ -24,7 +24,7 @@ const Account = sequelize.define('Account', {
   type: DataTypes.BOOLEAN
  },
  verificationCode: {
-  type: DataTypes.STRING,
+  type: DataTypes.STRING(36),
   unique: true
  }
 });
@@ -139,6 +139,7 @@ const Painpoint = sequelize.define('Painpoint', {
 });
 
 const PainpointServices = sequelize.define('painpointServices', {});
+const CompanyPainpoints = sequelize.define('companyPainpoints', {})
 
 Company.hasMany(Account, { foreignKey: "company" })
 Subscription.hasOne(Company, { foreignKey: "subscription" })
@@ -148,6 +149,8 @@ Subscription.hasMany(SubscriptionServices, { foreignKey: "subscription" })
 Service.hasMany(SubscriptionServices, { foreignKey: "service" })
 Painpoint.hasMany(PainpointServices, { foreignKey: "painpoint" })
 Service.hasMany(PainpointServices, { foreignKey: "service" })
+Painpoint.hasMany(CompanyPainpoints, { foreignKey: "painpoint" })
+Company.hasMany(CompanyPainpoints, { foreignKey: "company" })
 
 Company.sync()
 Account.sync()
@@ -155,6 +158,7 @@ Subscription.sync()
 Painpoint.sync()
 Service.sync()
 PainpointServices.sync()
+CompanyPainpoints.sync()
 
 
-export { Account, Company, Subscription, Painpoint, PainpointServices, Service }
+export { Account, Company, Subscription, Painpoint, PainpointServices, Service, CompanyPainpoints }
