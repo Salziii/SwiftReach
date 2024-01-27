@@ -138,16 +138,23 @@ const Painpoint = sequelize.define('Painpoint', {
  }
 });
 
+const PainpointServices = sequelize.define('painpointServices', {});
+
 Company.hasMany(Account, { foreignKey: "company" })
 Subscription.hasOne(Company, { foreignKey: "subscription" })
 Account.hasMany(Subscription, { foreignKey: "seller" })
 Account.hasMany(SubscriptionServices, { foreignKey: "seller" })
 Subscription.hasMany(SubscriptionServices, { foreignKey: "subscription" })
 Service.hasMany(SubscriptionServices, { foreignKey: "service" })
+Painpoint.hasMany(PainpointServices, { foreignKey: "painpoint" })
+Service.hasMany(PainpointServices, { foreignKey: "service" })
 
 Company.sync()
 Account.sync()
 Subscription.sync()
 Painpoint.sync()
+Service.sync()
+PainpointServices.sync()
 
-export { Account, Company, Subscription, Painpoint }
+
+export { Account, Company, Subscription, Painpoint, PainpointServices, Service }

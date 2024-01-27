@@ -1,94 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Buttons from "../(components)/Buttons";
-import GoalCard from "./(components)/GoalCard";
-import { AreaChartIcon, BarChart4Icon, BarChartIcon, LineChartIcon } from "lucide-react";
+import PainpointCard from "./(components)/PainpointCard";
 import LoadingIndicator from "../(components)/LoadingIndicator";
 import { toast } from "sonner";
 import axios from "axios";
 
-export type Goal = {
- title: string;
- description?: string;
- icon:any;
-};
-
-const YourGoals = (props: any) => {
+const Painpoints = (props: any) => {
  const { button, data, setData } = props;
 
  const [loading, setLoading] = useState(false);
 
- const [selectedGoals, setSelectedGoals] = useState<number[]>([]);
+ const [painpoints, setPainpoints] = useState<any[]>([]);
+ const [selectedPainpoints, setSelectedPainpoints] = useState<number[]>([]);
 
- const handleClick = (i:number) => {
-  const tempArray = [...selectedGoals]
-  if(tempArray[i]==i){delete tempArray[i]}
-  else {tempArray[i]=i}
+ const handleClick = (i: number) => {
+  const tempArray = [...selectedPainpoints];
+  if (tempArray[i] == i) {
+   delete tempArray[i];
+  } else {
+   tempArray[i] = i;
+  }
+  setSelectedPainpoints(tempArray);
+ };
 
-  setSelectedGoals(tempArray)
-
-  console.log(selectedGoals)
- }
-
- const goals: Goal[] = [
-  { title: "More Customers", icon: <LineChartIcon className="scale-150 text-primary-foreground" /> },
-  { title: "SwiftReach", description: "Work with us", icon: <BarChart4Icon className="scale-150 text-primary-foreground" /> },
-  {
-   title: "Bigger Social Media Profiles",
-   description: "Boost your reach on soical media",
-   icon: <AreaChartIcon className="scale-150 text-primary-foreground" />,
-  },
- ]; 
+ useEffect(() => {
+  setLoading(true);
+  axios
+   .get("/api/painpoints", {})
+   .then((res) => res.data)
+   .then((data) => {
+    setPainpoints(data);
+    setLoading(false);
+   });
+ }, []);
 
  async function submit() {
+  setLoading(true);
 
-  setLoading(true)
+  if (selectedPainpoints.map((i) => i).length !== 0) {
 
-  if (selectedGoals.length < 1) {
-   
-   setLoading(false)
+   setData({
+    ...data,
+    painpoints: selectedPainpoints.map((i) => painpoints.at(i).id),
+   });
 
-   toast.warning("Whoops!", {
-     description: "Select at least 1 goal!"
-   })
-
-  } else {
-
-   const res = await axios.post("/api/company", {  })
-
-   const { error, painpoints } = res.data;
-
-   if (error) {
-
-     setLoading(false)
-
-     toast.warning("Whoops!", {
-       description: error
-     })
-
-    } else {
-
-      setData({
-        ...data,
-        painpoints: painpoints,
-      });
-
-      setLoading(false);
-
-      button.submit();
-    }
+   setLoading(false);
 
    button.submit();
 
-  }
+  } else {
+   setLoading(false);
 
+   toast.warning("Whoops!", {
+    description: "Select At Least One Painpoint!",
+   });
+  }
  }
 
  return (
   <div className="w-5/6 flex flex-col justify-center">
-   <LoadingIndicator loading={loading}>
+   <LoadingIndicator loading={loading || !painpoints}>
     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-     {goals.map((goal, i) => (
-      <GoalCard goal={goal} selected={selectedGoals[i]==i} handleClick={handleClick} index={i} />
+     {painpoints.map((painpoint, i) => (
+      <PainpointCard
+       painpoint={painpoint}
+       selected={selectedPainpoints[i] == i}
+       handleClick={handleClick}
+       index={i}
+      />
      ))}
     </div>
     <Buttons submit={submit} button={button} />
@@ -97,4 +76,4 @@ const YourGoals = (props: any) => {
  );
 };
 
-export default YourGoals;
+export default Painpoints;

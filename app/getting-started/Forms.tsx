@@ -5,16 +5,18 @@ import { VerticalLine } from "./(components)/icons/VerticalLine";
 import { Dot } from "./(components)/icons/Dot";
 import AboutYou from "./forms/aboutYou";
 import { useRouter } from "next/navigation";
-import YourGoals from "./forms/yourGoals";
+import Painpoints from "./forms/yourGoals";
 import { StepTitle } from "./(components)/StepTitle";
 import Buttons from "./forms/(components)/Buttons";
+import Services from "./forms/services";
 
 export default function Forms() {
  const router = useRouter();
 
  const [data, setData] = useState({
   id: "",
-  painpoints: []
+  painpoints: [],
+  services: []
  });
 
  const [active, setActive] = useState(0);
@@ -32,13 +34,13 @@ export default function Forms() {
 
  const pages = [
   {
-   name: "Your Goals",
-   form: <YourGoals button={button} data={data} setData={setData} />,
+   name: "Your Painpoints",
+   form: <Painpoints button={button} data={data} setData={setData} />,
    res: null,
   },
   {
    name: "Our Help",
-   form: <Buttons submit={button.submit} button={button} />,
+   form: <Services button={button} data={data} setData={setData} />,
    res: null,
   },
   {
