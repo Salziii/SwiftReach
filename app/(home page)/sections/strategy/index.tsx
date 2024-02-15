@@ -4,10 +4,10 @@ import ThirdSection from "./sections/3";
 import FourthSection from "./sections/4";
 
 const sections:React.JSX.Element[] = [
- <FirstSection />,
- <SecondSection />,
- <ThirdSection />,
- <FourthSection />
+ <FirstSection key={1} />,
+ <SecondSection key={2} />,
+ <ThirdSection key={3} />,
+ <FourthSection key={4} />
 ];
 
 export default function Strategy() {

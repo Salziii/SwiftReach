@@ -8,16 +8,12 @@ import { useRouter } from "next/navigation";
 import Painpoints from "./forms/painpoints";
 import { StepTitle } from "./(components)/StepTitle";
 import Appointment from "./forms/appointment";
+import Done from "./forms/done";
 
 export default function Forms() {
  const router = useRouter();
 
- const [data, setData] = useState({
-  id: "",
-  painpoints: [],
-  services: [],
- });
-
+ const [data, setData] = useState<any>();
  const [active, setActive] = useState(0);
 
  const button = {
@@ -45,9 +41,13 @@ export default function Forms() {
    form: <Information button={button} data={data} setData={setData} />,
   },
   {
-   name: "Select An Appointment",
+   name: "Appointment",
    form: <Appointment button={button} data={data} setData={setData} />,
   },
+  {
+   name: "Done",
+   form: <Done button={button} data={data} setData={setData} />
+  }
  ];
 
  return (

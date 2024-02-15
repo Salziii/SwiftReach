@@ -10,7 +10,18 @@ export async function sendVerificationMail (email:string, verificationCode:strin
  await sendMail(
   {
    title: `Hi - Verify Your Email!`,
-   message: `https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}`,
+   message: `https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}`
+  },
+  infoEmailSender,
+  [email]
+ );
+}
+
+export async function sendMeetingMail ( email:string, invitationLink:string ) {
+ await sendMail(
+  {
+   title: `Meeting Arranged! 🙂`,
+   message: invitationLink
   },
   infoEmailSender,
   [email]

@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
- const { name, contactEmail } = await request.json();
+ try {
+  const { name, contactEmail } = await request.json();
 
  if (!name) return Response.json({ error: "Provide A Name!" }, { status: 400 });
  if (!contactEmail)
@@ -133,4 +134,7 @@ export async function POST(request: NextRequest) {
   },
   { status: 200 }
  );
+ } catch (err) {
+  return NextResponse.json({ error: "Internal Server Error!" }, { status: 500 })
+ }
 }

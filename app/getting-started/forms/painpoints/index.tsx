@@ -48,10 +48,11 @@ const Painpoints = (props: any) => {
     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
      {painpoints.map((painpoint, i) => (
       <PainpointCard
-       painpoint={painpoint}
-       selected={selectedPainpoints[i] == i}
-       handleClick={handleClick}
-       index={i}
+        key={i}
+        painpoint={painpoint}
+        selected={selectedPainpoints[i] == i}
+        handleClick={handleClick}
+        index={i}
       />
      ))}
     </div>

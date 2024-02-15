@@ -12,29 +12,19 @@ import { RiMailSendLine } from "react-icons/ri";
 
 import Image from "next/image";
 
-import { RotateMotion } from "../motion";
-import TransitionLink from "../transition/link";
 import Link from "../transition/link";
 
 const socials = [
  {
-  link: "",
+  link: "https://www.linkedin.com/company/swiftreach",
   icon: <Linkedin className="h-full w-full p-6 hover:text-blue-600" />,
  },
  {
-  link: "",
+  link: "https://www.instagram.com/swift.reach/",
   icon: <Instagram className="h-full w-full p-6 hover:text-pink-500" />,
  },
  {
-  link: "",
-  icon: <FaXTwitter className="h-full w-full p-6 hover:text-black" />,
- },
- {
-  link: "",
-  icon: <Github className="h-full w-full p-6 hover:text-gray-500" />,
- },
- {
-  link: "",
+  link: "https://www.facebook.com/profile.php?id=61554905276555",
   icon: <FaFacebook className="h-full w-full p-6 hover:text-blue-600" />,
  },
  {
@@ -50,13 +40,11 @@ export default function Footer() {
     <div className="flex justify-center">
      <div className="flex justify-between mx-10 md:mx-0 w-full md:w-2/3">
       {socials.map((social, i) => (
-       <RotateMotion key={i} delay={i * 0.2}>
-        <Link href={social.link}>
+        <Link key={i} href={social.link}>
          <div className="border-muted transition transform cursor-pointer border-2 rounded-full shadow-md w-20 h-20 hover:bg-muted hover:border-0 hover:opacity-90 hover:shadow-xl hover:-translate-y-1">
           {social.icon}
          </div>
         </Link>
-       </RotateMotion>
       ))} 
      </div>
     </div>

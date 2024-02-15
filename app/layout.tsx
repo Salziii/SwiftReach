@@ -30,7 +30,7 @@ export default function RootLayout({
  children: React.ReactNode;
 }) {
  return (
-  <html className="scroll-smooth w-full h-full" lang="de">
+  <html className="scrollbar-hidden w-full h-full" lang="de">
    <body className={font.className + " w-screen scrollbar-hidden"}>
     <ThemeProvider
      attribute="class"

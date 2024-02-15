@@ -78,14 +78,13 @@ const Information = (props: any) => {
    <div className="flex justify-center">
     <LoadingIndicator loading={loading}>
      <div className="w-full flex flex-col justify-center gap-4">
-      <div className="flex flex-col pb-4">
+      {/* <div className="flex flex-col pb-4">
        <div className="flex justify-center text-[32px] text-white">
-        Tell Us Something About Your Business
+        
        </div>
-      </div>
-
+      </div> */}
       <TextInput
-       label="Business Name"
+       label="Unternehmens Name"
        placeholder="SwiftReach"
        value={name}
        set={setName}

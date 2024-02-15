@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
   );
  }
 
- const verificationCode = randomBytes(36).toString("hex");
+ const verificationCode = randomBytes(8).toString("hex");
 
  account = await Account.create({
   name: isRootAccount ? "$root" : name,

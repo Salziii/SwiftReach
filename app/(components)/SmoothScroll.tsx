@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 export default function Link({ children }: { children: React.ReactNode }) {
 
- const scrollContainer = useRef<HTMLElement>()
+ const scrollContainer = useRef<HTMLDivElement>(null)
 
  useEffect(() => {
   (async () => {
@@ -17,7 +17,7 @@ export default function Link({ children }: { children: React.ReactNode }) {
    }
 
    new LocomotiveScroll({
-    el: scrollContainer ?? undefined,
+    el: scrollContainer.current!,
     reloadOnContextChange: true,
     smooth: true
    });

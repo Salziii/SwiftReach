@@ -12,7 +12,7 @@ const Buttons = ({ submit, button } : { submit : () => Promise<Boolean>, button 
     onClick={handleClick}
     className="px-10 py-3 font-medium text-base border-solid border-2 rounded-full border-white text-white bg-transparent hover:opacity-60 hover:cursor-pointer"
    >
-    {button.canScroll() ? "Next" : "Finish"}
+    {button.canScroll() ? "Next" : "Done"}
    </button>
   </div>
  );

@@ -53,7 +53,7 @@ export default function Hero() {
          2000,
         ]}
         speed={25}
-        className="bg-gradient-to-r from-primary-foreground to-secondary-foreground inline-block text-transparent bg-clip-text"
+        className="bg-gradient-to-r from-primary-foreground to-secondary-foreground text-transparent bg-clip-text"
         wrapper="span"
         repeat={Infinity}
        />

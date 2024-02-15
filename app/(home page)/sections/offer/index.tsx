@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function Offer() {
  const imgs: React.JSX.Element[] = [
   <Image
+   key={1}
    className="h-full w-full scale-75"
    src="/offer.fb-phone.png"
    alt=""
@@ -14,6 +15,7 @@ export default function Offer() {
    width={1000}
   />,
   <Image
+   key={2}
    className="h-full w-full scale-75"
    src="/offer.fb-phone.png"
    alt=""
@@ -21,6 +23,7 @@ export default function Offer() {
    width={1000}
   />,
   <Image
+  key={3}
    className="h-full w-full scale-75"
    src="/offer.fb-phone.png"
    alt=""
@@ -42,8 +45,8 @@ export default function Offer() {
      <ThirdPage />
     </div>
     <div className="w-1/2 h-screen">
-     {imgs.map((img) => (
-      <div
+     {imgs.map((img, i) => (
+      <div key={i}
        className="h-full w-full flex flex-col justify-center"
        data-scroll
        data-scroll-speed="8"
@@ -55,20 +58,4 @@ export default function Offer() {
    </div>
   </section>
  );
-}
-
-{
- /* <Stop
-    stop={
-     <>
-      <RFirstPage />
-      <RSecondPage />
-      <RThirdPage />
-     </>
-    }
-   >
-    <FirstPage />
-    <SecondPage />
-    <ThirdPage />
-   </Stop> */
 }

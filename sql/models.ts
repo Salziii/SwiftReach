@@ -80,8 +80,6 @@ const Subscription = sequelize.define('Subscription', {
  }
 });
 
-const SubscriptionServices = sequelize.define("subscriptionServices", {})
-
 const Service = sequelize.define("Service", {
  id: {
   type: DataTypes.BIGINT,
@@ -138,27 +136,30 @@ const Painpoint = sequelize.define('Painpoint', {
  }
 });
 
+const SubscriptionServices = sequelize.define("subscriptionServices", {})
+SubscriptionServices.sync()
+Account.hasMany(SubscriptionServices, { foreignKey: "seller" })
+Subscription.hasMany(SubscriptionServices, { foreignKey: "subscription" })
+Service.hasMany(SubscriptionServices, { foreignKey: "service" })
+
 const PainpointServices = sequelize.define('painpointServices', {});
-const CompanyPainpoints = sequelize.define('companyPainpoints', {})
+PainpointServices.sync()
+Painpoint.hasMany(PainpointServices, { foreignKey: "painpoint" })
+Service.hasMany(PainpointServices, { foreignKey: "service" })
+
+const CompanyPainpoints = sequelize.define('companyPainpoints', {});
+CompanyPainpoints.sync()
+Painpoint.hasMany(CompanyPainpoints, { foreignKey: "painpoint" })
+Company.hasMany(CompanyPainpoints, { foreignKey: "company" })
 
 Company.hasMany(Account, { foreignKey: "company" })
 Subscription.hasOne(Company, { foreignKey: "subscription" })
 Account.hasMany(Subscription, { foreignKey: "seller" })
-Account.hasMany(SubscriptionServices, { foreignKey: "seller" })
-Subscription.hasMany(SubscriptionServices, { foreignKey: "subscription" })
-Service.hasMany(SubscriptionServices, { foreignKey: "service" })
-Painpoint.hasMany(PainpointServices, { foreignKey: "painpoint" })
-Service.hasMany(PainpointServices, { foreignKey: "service" })
-Painpoint.hasMany(CompanyPainpoints, { foreignKey: "painpoint" })
-Company.hasMany(CompanyPainpoints, { foreignKey: "company" })
 
 Company.sync()
 Account.sync()
 Subscription.sync()
 Painpoint.sync()
 Service.sync()
-PainpointServices.sync()
-CompanyPainpoints.sync()
-
 
 export { Account, Company, Subscription, Painpoint, PainpointServices, Service, CompanyPainpoints }

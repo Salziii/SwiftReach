@@ -50,7 +50,6 @@
  }
  body {
   @apply bg-background text-foreground w-full h-full;
-  overflow-x: hidden;
   background-image: url("/dark.png");
   background-size: 850px;
   background-repeat: repeat;
@@ -63,8 +62,8 @@
  }
 
  .scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
  }
 
  .scrollbar-hidden::-webkit-scrollbar {

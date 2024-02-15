@@ -12,6 +12,8 @@ const useLocomotiveScroll = ({
 }: Omit<LocomotiveScrollOptions, "el">): UseLocomotiveScrollHook => {
  const locomotiveScrollRef = useRef<Scroll | null>(null);
 
+ const pathname = usePathname()
+
  useEffect(() => {
   (async () => {
    const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -36,7 +38,7 @@ const useLocomotiveScroll = ({
     locomotiveScrollRef.current?.destroy();
    };
   })();
- }, []);
+ }, [pathname]);
  return [locomotiveScrollRef];
 };
 export default useLocomotiveScroll;
