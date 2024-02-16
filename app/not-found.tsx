@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
 export default function NotFound() {
- return null;
+ redirect("/")
+ return <>not found</>;
 }

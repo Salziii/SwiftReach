@@ -5,20 +5,35 @@ import { NextRequest, NextResponse } from "next/server";
 import { Op } from "sequelize";
 import { randomBytes } from "crypto";
 import { sendVerificationMail } from "../(mailer)/mails";
+import jwt from "jsonwebtoken";
 
 export async function GET(request: NextRequest) {
- const accountId = request.nextUrl.searchParams.get("accountId");
 
- if (!accountId)
-  return NextResponse.json({ error: "Provide A Account ID!" }, { status: 400 });
+ let id = request.nextUrl.searchParams.get("id");
+ const token:string | undefined = request.cookies.get("token")?.value
+ 
+ if (!id && !token) return NextResponse.json({ error: "Provide A Account ID Or Log In!" }, { status: 400 });
 
- if (!(await Account.findByPk(accountId)))
+ if (!id) {
+  const data:any = jwt.verify(token!, process.env.JWT_SECRET_KEY!)
+  id = data.id
+ }
+
+ let account = (await Account.findByPk(id!))?.toJSON()
+
+ if (!account)
   return NextResponse.json(
-   { error: `Account with ID ${accountId} does not exist!` },
+   { error: `Account with ID ${id} does not exist!` },
    { status: 400 }
   );
 
- return Response.json(await Account.findByPk(accountId));
+  return NextResponse.json({ 
+   id: account.id,
+   name: account.name,
+   email: account.email,
+   company: account.company,
+   employee: account.employee
+  }, { status: 200 });
 }
 
 export async function POST(request: NextRequest) {
@@ -37,7 +52,11 @@ export async function POST(request: NextRequest) {
 
  let account = await Account.findOne({ where: { email: email } });
 
- if (account) return NextResponse.json({ account: account }, { status: 200 });
+ if (account) {
+  const response = NextResponse.json({ account: account }, { status: 200 });
+  response.cookies.set("token", jwt.sign(account.toJSON(), process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }), { httpOnly: true })
+  return response
+ }
 
  const emailDomain = isCustomEmail(email) ? getEmailDomain(email) : "";
 
@@ -71,5 +90,8 @@ export async function POST(request: NextRequest) {
 
  sendVerificationMail(email, verificationCode);
 
- return NextResponse.json({ account: account }, { status: 201 });
+ const response = NextResponse.json({ account: account }, { status: 201 });
+ response.cookies.set("token", jwt.sign(account.toJSON(), process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }), { httpOnly: true })
+ return response
+
 }

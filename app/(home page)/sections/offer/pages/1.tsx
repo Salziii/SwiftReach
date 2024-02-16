@@ -1,4 +1,4 @@
-import StartButton from "@/app/(home page)/(comonents)/StartButton";
+import StartButton from "@/app/(home page)/(components)/StartButton";
 import { motion } from "framer-motion";
 
 export default function FirstPage() {

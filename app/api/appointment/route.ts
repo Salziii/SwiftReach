@@ -1,7 +1,7 @@
-import { setAppointment } from "@/lib/google/calendar"
+import { setAppointment } from "@/lib/google/calendar";
 import { Company } from "@/sql/models";
-import axios, { AxiosError } from "axios"
-import { NextRequest, NextResponse } from "next/server"
+import axios, { AxiosError } from "axios";
+import { NextRequest, NextResponse } from "next/server";
 import { sendMeetingMail } from "../(mailer)/mails";
 
 export async function POST(request: NextRequest) {
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     if (!(await axios.get("http://localhost:3000/api/appointment/timespans/available?date=" + date.toISOString())).data.available)
       return NextResponse.json({ error: "Unavailable Timespan!" }, { status: 400 })
 
-    const account = (await axios.get("http://localhost:3000/api/account?accountId=" + accountId)).data
+    const account = (await axios.get("http://localhost:3000/api/account?id=" + accountId)).data
 
     const company = await Company.findOne({ where: { id: account.company } })
 

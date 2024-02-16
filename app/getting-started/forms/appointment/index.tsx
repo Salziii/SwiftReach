@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowBigLeftIcon, ArrowBigRightIcon } from "lucide-react";
-import axios from "axios";
 import useAsyncEffect from "@/lib/asyncEffect";
-import Timestamps from "./(components)/timestamps";
+import axios, { AxiosError } from "axios";
+import { ArrowBigLeftIcon, ArrowBigRightIcon } from "lucide-react";
+import { useState } from "react";
 import { ThreeDot } from "react-loading-indicators";
+import { toast } from "sonner";
+import Timestamps from "./(components)/timestamps";
 
 type Day = {
   date: string,
@@ -41,9 +42,16 @@ const Appointment = ({
 
   useAsyncEffect(async () => {
     setLoadingDays(true)
-    const res = await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())
-    setDays(res.data)
-    setPadding(weekdays.indexOf(new Date(res.data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
+    try {
+      const data = (await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())).data
+      setDays(data)
+      setPadding(weekdays.indexOf(new Date(data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
+     } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.warning("Whoops", { description: error.response?.data.error })
+      }
+      console.error(error)
+     }
     setLoadingDays(false)
   }, [choosenMonth])
 

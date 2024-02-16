@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { CheckCircle } from "lucide-react";
-import axios from "axios";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import useAsyncEffect from "@/lib/asyncEffect";
-import { ScrollArea } from "@/components/ui/scroll-area"
-import LoadingIndicator from "../../(components)/LoadingIndicator";
+import axios, { AxiosError } from "axios";
+import { CheckCircle } from "lucide-react";
+import { useState } from "react";
 import { ThreeDot } from "react-loading-indicators";
 import { toast } from "sonner";
+import LoadingIndicator from "../../(components)/LoadingIndicator";
 
 type Timestamp = {
   start: string
@@ -32,17 +32,24 @@ const Timestamps = ({
 
     if (data.accountId) {
 
-      const res = await axios.post("/api/appointment?date=" + timestamp.start, {
-        accountId: data.accountId
-      })
+      try {
+        const res = await axios.post("/api/appointment?date=" + timestamp.start, { accountId: data.accountId })
 
-      if (!res.data.error) finish()
-      else {
-        setBookingLoading(false)
+        if (!res.data.error) finish()
+        else {
+          setBookingLoading(false)
 
-        toast.warning("Whoops!", {
-          description: res.data.error
-        })
+          toast.warning("Whoops!", {
+            
+            description: res.data.error
+          })
+        }
+
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          toast.warning("Whoops", { description: error.response?.data.error })
+        }
+        console.error(error)
       }
 
     } else {

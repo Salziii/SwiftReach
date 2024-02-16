@@ -8,19 +8,20 @@ export default function Link({ children }: { children: React.ReactNode }) {
 
  useEffect(() => {
   (async () => {
-   const LocomotiveScroll = (await import("locomotive-scroll")).default;
 
-   if (!scrollContainer) {
-    console.warn(
-     "locomotive-scroll: [data-scroll-container] dataset was not found. You likely forgot to add it which will prevent Locomotive Scroll to work."
-    );
-   }
+   try {
 
-   new LocomotiveScroll({
-    el: scrollContainer.current!,
-    reloadOnContextChange: true,
-    smooth: true
-   });
+    const LocomotiveScroll = (await import("locomotive-scroll")).default;
+
+    const ls = new LocomotiveScroll({
+     el: scrollContainer.current!,
+     reloadOnContextChange: true,
+     smooth: true
+    });
+
+    return () => ls.destroy()
+
+   } catch (error) { console.error(error) }
 
   })();
  }, []);

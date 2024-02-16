@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Eye, LineChartIcon, PiggyBank, Ruler, Users2 } from "lucide-react";
-import StartButton from "@/app/(home page)/(comonents)/StartButton";
+import StartButton from "@/app/(home page)/(components)/StartButton";
 import { TypeAnimation } from "react-type-animation";
-import ScrollHint from "../../(comonents)/ScrollHint";
+import ScrollHint from "../../(components)/ScrollHint";
 
 export default function Hero() {
  return (
