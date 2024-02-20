@@ -4,56 +4,41 @@ import { Account, Company } from "@/sql/models";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import jwt from "jsonwebtoken";
+import { format } from "../(utils)/formatter";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
  typescript: true,
  apiVersion: "2023-10-16",
 });
 
-const infoEmailSender: Sender = {
- email: "marketing@swiftreach.de",
- password: "BFs32t%vdg^@zP9vQYU2",
- name: "SwiftReach",
-};
-
 export async function GET(request: NextRequest) {
  try {
-  let company; 
+  let depth = Number(request.nextUrl.searchParams.get("depth"))
 
-  const id = request.nextUrl.searchParams.get("id");
-  if (id) company = await Company.findByPk(id)
-
-  const name = request.nextUrl.searchParams.get("name");
-  if (name && !company) company = await Company.findOne({ where: { name: name } })
-
+  let id = request.nextUrl.searchParams.get("id");
   const token: string | undefined = request.cookies.get("token")?.value
-  if (token && !company && !id && !name) {
-   const data:any = jwt.verify(token!, process.env.JWT_SECRET_KEY!)
+
+  if (!id) {
+   if (!token)
+    return NextResponse.json({ error: "Provide A Company ID Or Log In!" }, { status: 400 })
+   const data: any = jwt.verify(token!, process.env.JWT_SECRET_KEY!)
    const account = await Account.findByPk(data.id)
-   const id = account?.getDataValue("company")
-
-   if (!id) return NextResponse.json(
-    { error: "Not assigned to a company!" },
-    { status: 401 }
-   );
-
-   company = await Company.findByPk(id)
-
+   id = account?.getDataValue("company")
   }
 
-  if (!company) return NextResponse.json(
-   { error: `Company does not exist!` },
-   { status: 400 }
-  );
+  const company = await Company.findByPk(id!)
 
-  return NextResponse.json({
-   id: company.getDataValue("id"),
-   name: company.getDataValue("name"),
-   contactEmail: company.getDataValue("contactEmail")
-  }, { status: 200 });
+  if (!company)
+   return NextResponse.json(
+    { error: `Company with ID ${id} does not exist!` },
+    { status: 400 }
+   );
 
- } catch (error: any) {
-  return Response.json({ errors: error.message }, { status: 500 });
+  return NextResponse.json(await format(company, depth), { status: 200 });
+
+ } catch (err) {
+  console.log(err)
+  return NextResponse.json({ error: "Contact an Admin!" }, { status: 500 })
  }
 }
 

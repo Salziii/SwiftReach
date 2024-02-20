@@ -70,7 +70,7 @@ const Timestamps = ({
     const res = await axios.get("/api/appointment/timespans?date=" + day.toISOString())
     setTimestamps(res.data as Timestamp[]);
     setTimestampsLoading(false)
-  }, [])
+  }, [day])
 
   const [choosenTimestamp, setChoosenTimestamp] = useState<Timestamp | undefined>(undefined)
 

@@ -7,29 +7,33 @@ import {
 } from "@/components/ui/resizable";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import axios from "axios";
+import { CircleDollarSignIcon, InfinityIcon, PiggyBank } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BsCursor, BsFunnel } from "react-icons/bs";
+import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { AccountButton } from "./(components)/AccountButton";
 import Meetings from "./(components)/meetings";
 import Steps from "./(components)/steps";
+import Infos from "./(components)/infos";
+import { ThreeDot } from "react-loading-indicators";
+import { Card } from "@/components/ui/card";
 
-const steps = [
- { title: "Erwartbares", description: "Was in Zukunft zu erwarten ist", status: "finished", href: "/" },
- { title: "Erinnerungen", description: "Checkliste abarbeiten", status: "finished", href: "/" },
- { title: "Ads Manager Integration", description: "Werbemanager Daten überreichen", status: "finished", href: "/" },
- { title: "Euere Kunden", description: "Ziel Markt herausfinden", status: "finished", href: "/" },
- { title: "Strategie Session", description: "KickOff Call buchen", status: "pending", href: "/" },
- { title: "Liftoff", description: "Letzte Worte", status: "pending", href: "/" },
+const infos = [
+ { title: "Klicks", data: 1348, lastData: 103, unit: "", betterMore: true, icon: <BsCursor size={38} /> },
+ { title: "Conversions", data: 312, lastData: 15, unit: "", betterMore: true, icon: <BsFunnel size={38} /> },
+ { title: "Ausgaben", data: 445, lastData: 475, unit: "€", betterMore: false, icon: <PiggyBank size={38} /> },
+ { title: "Einnahmen", data: 7840, lastData: 1600, unit: "€", betterMore: true, icon: <CircleDollarSignIcon size={38} /> },
+ { title: "ROI", data: 16.6, lastData: 8.6, unit: "", betterMore: true, icon: <FaMoneyBill1Wave size={38} /> }
 ]
 
-export default function Imprint() {
+export default function Dashboard() {
 
- const [account, setAccount] = useState<any>({})
- const [company, setCompany] = useState<any>({})
+ const [account, setAccount] = useState<any | undefined>()
 
  useEffect(() => {
   (async () => {
-   setAccount((await axios.get("/api/account")).data)
-   setCompany((await axios.get("/api/company")).data)
+    setAccount((await axios.get("/api/account?depth=3")).data)
+    console.log(account)
   })();
  }, [])
 
@@ -44,20 +48,34 @@ export default function Imprint() {
    <ResizableHandle className="opacity-75" />
    <ResizablePanel>
     <div className="h-full w-full">
-     <div className="my-8 mx-12">
-      <div className="flex justify-between">
-       <div className="h-full">
-        <h1 className="font-bold text-3xl">Willkommen zurück, {account.name === "$root" ? company.name : account.name}!</h1>
+     {
+      account
+       ? <div className="my-8 mx-12">
+        <div className="flex justify-between">
+         <div className="h-full">
+          <h1 className="font-bold text-3xl">Willkommen zurück, {account.name}!</h1>
+         </div>
+         <div className="h-full flex justify-end">
+          <AccountButton account={account} />
+         </div>
+        </div>
+        <Infos infos={infos} />
+        <div className="mt-6 w-full grid grid-cols-3 gap-6">
+         <Steps steps={account.company.steps} />
+         <Meetings meetings={account.meetings} />
+        </div>
+        <div className="mt-6 w-full grid grid-cols-3 gap-6">
+        <Card className="h-[500px] col-span-2 py-4 px-2" >
+          
+        </Card>
+        </div>
        </div>
-       <div className="h-full flex justify-end">
-        <AccountButton />
+       : <div className="w-full h-full flex justify-center">
+        <div className="flex flex-col justify-center">
+         <ThreeDot color="#b133ce" size="large" />
+        </div>
        </div>
-      </div>
-      <div className="mt-8 w-full grid grid-cols-3 gap-6">
-       <Steps steps={steps} />
-       <Meetings meetings={[]} />
-      </div>
-     </div>
+     }
     </div>
    </ResizablePanel>
   </ResizablePanelGroup>

@@ -136,21 +136,82 @@ const Painpoint = sequelize.define('Painpoint', {
  }
 });
 
+const Meeting = sequelize.define('Meeting', {
+ id: {
+  type: DataTypes.BIGINT,
+  autoIncrement: true,
+  primaryKey: true,
+  allowNull: false
+ },
+ label: {
+  type: DataTypes.STRING,
+  allowNull: false
+ },
+ link: {
+  type: DataTypes.TEXT
+ },
+ start: {
+  type: DataTypes.DATE,
+  allowNull: false
+ },
+ end: {
+  type: DataTypes.DATE,
+  allowNull: false
+ }
+});
+
+const Step = sequelize.define('Step', {
+ id: {
+  type: DataTypes.BIGINT,
+  autoIncrement: true,
+  primaryKey: true,
+  allowNull: false
+ },
+ label: {
+  type: DataTypes.STRING,
+  allowNull: false
+ },
+ description: {
+  type: DataTypes.TEXT,
+  allowNull: false
+ },
+ youtubeVideoId: {
+  type: DataTypes.STRING,
+  allowNull: false
+ }
+});
+
 const SubscriptionServices = sequelize.define("subscriptionServices", {})
-SubscriptionServices.sync()
 Account.hasMany(SubscriptionServices, { foreignKey: "seller" })
 Subscription.hasMany(SubscriptionServices, { foreignKey: "subscription" })
 Service.hasMany(SubscriptionServices, { foreignKey: "service" })
+SubscriptionServices.sync()
 
 const PainpointServices = sequelize.define('painpointServices', {});
-PainpointServices.sync()
 Painpoint.hasMany(PainpointServices, { foreignKey: "painpoint" })
 Service.hasMany(PainpointServices, { foreignKey: "service" })
+PainpointServices.sync()
 
 const CompanyPainpoints = sequelize.define('companyPainpoints', {});
-CompanyPainpoints.sync()
 Painpoint.hasMany(CompanyPainpoints, { foreignKey: "painpoint" })
 Company.hasMany(CompanyPainpoints, { foreignKey: "company" })
+CompanyPainpoints.sync()
+
+const meetingAccounts = sequelize.define('meetingAccounts', {})
+Meeting.hasMany(meetingAccounts, { foreignKey: "meeting" })
+Account.hasMany(meetingAccounts, { foreignKey: "account" })
+meetingAccounts.sync()
+
+const companySteps = sequelize.define('companySteps', {
+ status: {
+  type: DataTypes.STRING,
+  allowNull: false,
+  defaultValue: "unavailable"
+ }
+})
+Step.hasMany(companySteps, { foreignKey: "step" })
+Company.hasMany(companySteps, { foreignKey: "company" })
+companySteps.sync()
 
 Company.hasMany(Account, { foreignKey: "company" })
 Subscription.hasOne(Company, { foreignKey: "subscription" })
@@ -161,5 +222,7 @@ Account.sync()
 Subscription.sync()
 Painpoint.sync()
 Service.sync()
+Meeting.sync()
+Step.sync()
 
-export { Account, Company, Subscription, Painpoint, PainpointServices, Service, CompanyPainpoints }
+export { Account, Company, Subscription, SubscriptionServices, Painpoint, PainpointServices, Service, CompanyPainpoints, Meeting, meetingAccounts, Step, companySteps }
