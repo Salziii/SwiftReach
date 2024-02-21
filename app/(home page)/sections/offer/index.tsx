@@ -1,39 +1,60 @@
-"use client";
-
-import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import FirstPage from "./pages/left/1";
-import SecondPage from "./pages/left/2";
-import ThirdPage from "./pages/left/3";
-import RightSide from "./pages/right";
+import React from "react";
+import FirstPage from "./pages/1";
+import SecondPage from "./pages/2";
+import ThirdPage from "./pages/3";
+import Image from "next/image";
 
 export default function Offer() {
- useEffect(() => {
-  const ctx = gsap.context(() => {
-   gsap.registerPlugin(ScrollTrigger);
-   ScrollTrigger.create({
-    trigger: "#offer",
-    pin: ".right",
-    start: "top top",
-    end: "bottom bottom",
-   });
-  });
-  return () => ctx.revert();
- }, []);
+ const imgs: React.JSX.Element[] = [
+  <Image
+   key={1}
+   className="h-full w-full scale-75"
+   src="/offer.fb-phone.png"
+   alt=""
+   height={1000}
+   width={1000}
+  />,
+  <Image
+   key={2}
+   className="h-full w-full scale-75"
+   src="/offer.fb-phone.png"
+   alt=""
+   height={1000}
+   width={1000}
+  />,
+  <Image
+  key={3}
+   className="h-full w-full scale-75"
+   src="/offer.fb-phone.png"
+   alt=""
+   height={1000}
+   width={1000}
+  />,
+ ];
 
  return (
   <section
-   className="flex flex-col 2xl:flex-row justify-center 2xl:justify-start w-full bg-card text-white shadow-inner-all"
+   className="w-sceen bg-card text-white"
    id="offer"
+   data-scroll-section
   >
-   <div className="left w-full 2xl:w-1/2">
-    <FirstPage />
-    <SecondPage />
-    <ThirdPage />
-   </div>
-   <div className="right hidden 2xl:block h-screen w-1/2">
-    <RightSide />
+   <div className="flex w-screen">
+    <div className="w-1/2">
+     <FirstPage />
+     <SecondPage />
+     <ThirdPage />
+    </div>
+    <div className="w-1/2 h-screen">
+     {imgs.map((img, i) => (
+      <div key={i}
+       className="h-full w-full flex flex-col justify-center"
+       data-scroll
+       data-scroll-speed="8"
+      >
+       {img}
+      </div>
+     ))}
+    </div>
    </div>
   </section>
  );

@@ -1,19 +1,12 @@
-import { Metadata } from "next";
+import SmoothScroll from "@/lib/hooks/SmoothScroll";
 import Forms from "./Forms";
 
-export const metadata: Metadata = {
- title: "Getting Started",
-};
-
-export default () => {
-
- // WENN loggedIn: auf / schicken + Toast (Du bist bereits in einer Company)
-
- return (
-  <article className="h-[100vh] flex flex-col justify-center">
+export default function GettingStarted() {
+ return <SmoothScroll>
+  <article className="h-screen flex flex-col justify-center">
    <div className="h-5/6 w-full flex">
     <Forms />
    </div>
   </article>
- );
+ </SmoothScroll>
 };

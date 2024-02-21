@@ -3,19 +3,17 @@
 import React, { useState } from "react";
 import { VerticalLine } from "./(components)/icons/VerticalLine";
 import { Dot } from "./(components)/icons/Dot";
-import AboutYou from "./forms/aboutYou";
+import Information from "./forms/information";
 import { useRouter } from "next/navigation";
-import YourGoals from "./forms/yourGoals";
+import Painpoints from "./forms/painpoints";
 import { StepTitle } from "./(components)/StepTitle";
-import Buttons from "./forms/(components)/Buttons";
+import Appointment from "./forms/appointment";
+import Done from "./forms/done";
 
 export default function Forms() {
  const router = useRouter();
 
- const [data, setData] = useState({
-  id: "",
- });
-
+ const [data, setData] = useState<any>();
  const [active, setActive] = useState(0);
 
  const button = {
@@ -31,26 +29,30 @@ export default function Forms() {
 
  const pages = [
   {
-   name: "Your Goals",
-   form: <YourGoals button={button} data={data} setData={setData} />,
-   res: null,
+   name: "Your Painpoints",
+   form: <Painpoints button={button} data={data} setData={setData} />,
   },
-  {
-   name: "Our Help",
-   form: <Buttons submit={button.submit} button={button} />,
-   res: null,
-  },
+  // {
+  //  name: "Our Help",
+  //  form: <Services button={button} data={data} setData={setData} />
+  // },
   {
    name: "About You",
-   form: <AboutYou button={button} data={data} setData={setData} />,
-   res: null,
+   form: <Information button={button} data={data} setData={setData} />,
   },
-  { name: "Select An Appointment", form: <></>, res: null },
+  {
+   name: "Appointment",
+   form: <Appointment button={button} data={data} setData={setData} />,
+  },
+  {
+   name: "Done",
+   form: <Done button={button} data={data} setData={setData} />
+  }
  ];
 
  return (
   <>
-   <div className="w-[500px] lg:w-[1000px] hidden md:flex justify-center border-r-2 border-[#8586887c] border-dashed">
+   <div className="w-[500px] lg:w-[1000px] hidden md:flex justify-center border-r-2 border-dashed">
     <div className="flex flex-col justify-center">
      {pages.map((page) => (
       <>
