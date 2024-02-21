@@ -2,7 +2,7 @@ import { setAppointment } from "@/lib/google/calendar";
 import { Account, Company, Meeting, meetingAccounts } from "@/sql/models";
 import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
-import { sendMeetingMail } from "../(mailer)/mails";
+import { sendMeetingMail } from "../(utils)/mails";
 import jwt from "jsonwebtoken";
 import { format } from "../(utils)/formatter";
 
