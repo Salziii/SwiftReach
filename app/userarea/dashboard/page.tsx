@@ -35,7 +35,7 @@ export default function Dashboard() {
     setAccount((await axios.get("/api/account?depth=3")).data)
     console.log(account)
   })();
- }, [])
+ })
 
  return <TooltipProvider>
   <ResizablePanelGroup

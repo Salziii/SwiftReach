@@ -21,12 +21,12 @@ import F5 from "./forms/5"
 import F6 from "./forms/6"
 
 const forms = [
-  <F1 />,
-  <F2 />,
-  <F3 />,
-  <F4 />,
-  <F5 />,
-  <F6 />
+  <F1 key={1} />,
+  <F2 key={2} />,
+  <F3 key={3} />,
+  <F4 key={4} />,
+  <F5 key={5} />,
+  <F6 key={6} />
 ]
 
 function StepCard({ step }: { step: any }) {
@@ -76,7 +76,7 @@ export default function Steps({ steps }: { steps: any[] }) {
       <div className="px-3 flex flex-col gap-2">
         {
           steps.map((step, i) => !steps[i - 1] || steps[i - 1].status === "finished"
-            ? <Dialog>
+            ? <Dialog key={i} >
               <DialogTrigger asChild>
                 <div className="w-full h-full">
                   <StepCard step={step} />
@@ -100,7 +100,7 @@ export default function Steps({ steps }: { steps: any[] }) {
                 </DialogFooter>
               </DialogContent>
             </Dialog>
-            : <StepCard step={step} />
+            : <StepCard key={i} step={step} />
           )
         }
       </div>

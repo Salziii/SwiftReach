@@ -2,7 +2,6 @@
 
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react"
-import useAsyncEffect from "@/lib/asyncEffect";
 import { VT323 } from "next/font/google";
 import { useSearchParams } from "next/navigation";
 
@@ -19,16 +18,18 @@ export default function Company() {
  const [error, setError] = useState<string | undefined>(undefined)
  const [company, setCompany] = useState<any>({})
 
- useAsyncEffect(async () => {
-  setLoading(true)
-  try {
-   setCompany((await axios.get("/api/company?" + searchparams)).data)
-  } catch (error) {
-   if (error instanceof AxiosError) setError(error.response?.data.error)
-   console.error(error)
-  }
-  setLoading(false)
- }, [])
+ useEffect(() => {
+  (async () => {
+   setLoading(true)
+   try {
+    setCompany((await axios.get("/api/company?" + searchparams)).data)
+   } catch (error) {
+    if (error instanceof AxiosError) setError(error.response?.data.error)
+    console.error(error)
+   }
+   setLoading(false)
+  })()
+ })
 
  return error ? error : loading ? <div>Loading...</div> : <div className={font.className + " w-screen h-screen bg-background font-bold text-3xl"}>
   id: {company.id} <br /> name: {company.name} <br /> contact email: {company.contactEmail}

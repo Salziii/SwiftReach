@@ -47,8 +47,8 @@ export default function Meetings({ meetings }: { meetings: any[] | undefined }) 
               {meeting.label}
              </h1>
              <div className="flex gap-1">
-              {meeting.members.map((member: any) => (
-               <div className="flex gap-1 bg-card pl-[2px] pr-2 rounded-full h-7">
+              {meeting.members.map((member: any, i:number) => (
+               <div key={i} className="flex gap-1 bg-card pl-[2px] pr-2 rounded-full h-7">
                 <div className="flex flex-col justify-center">
                  <div className="h-[24px] w-[24px] rounded-full border overflow-hidden">
                   <FallbackImage width={24} height={24} alt="" src={``} fallback={`/profilepictures/default.png`} />

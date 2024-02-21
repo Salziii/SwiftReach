@@ -1,9 +1,8 @@
 "use client";
 
-import useAsyncEffect from "@/lib/asyncEffect";
 import axios, { AxiosError } from "axios";
 import { ArrowBigLeftIcon, ArrowBigRightIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThreeDot } from "react-loading-indicators";
 import { toast } from "sonner";
 import Timestamps from "./(components)/timestamps";
@@ -40,19 +39,21 @@ const Appointment = ({
   const [padding, setPadding] = useState<number>(0)
   const [choosenDay, setChoosenDay] = useState<Day | undefined>(undefined)
 
-  useAsyncEffect(async () => {
-    setLoadingDays(true)
-    try {
-      const data = (await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())).data
-      setDays(data)
-      setPadding(weekdays.indexOf(new Date(data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
-     } catch (error) {
-      if (error instanceof AxiosError) {
-        toast.warning("Whoops", { description: error.response?.data.error })
+  useEffect(() => {
+    (async () => {
+      setLoadingDays(true)
+      try {
+        const data = (await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())).data
+        setDays(data)
+        setPadding(weekdays.indexOf(new Date(data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          toast.warning("Whoops", { description: error.response?.data.error })
+        }
+        console.error(error)
       }
-      console.error(error)
-     }
-    setLoadingDays(false)
+      setLoadingDays(false)
+    })()
   }, [choosenMonth])
 
   return <div className="w-full h-full flex flex-col justify-center select-none">
@@ -93,11 +94,11 @@ const Appointment = ({
                 : (
                   <div className="w-full h-[500px] mt-8">
                     <div className="flex w-full justify-between mb-8">
-                    {
-                      weekdays.map((weekday, i) => (
-                        <div key={i} className="w-full flex justify-center text-lg font-bold">{weekday}</div>
-                      ))
-                    }
+                      {
+                        weekdays.map((weekday, i) => (
+                          <div key={i} className="w-full flex justify-center text-lg font-bold">{weekday}</div>
+                        ))
+                      }
                     </div>
                     <div className="w-full grid grid-cols-7 gap-y-4">
                       {[...Array(padding)].map((_, i) => <div key={i} />)}

@@ -2,8 +2,8 @@ import { InfinityIcon } from "lucide-react"
 
 export default function Infos({ infos }: { infos: any[] }) {
   return <div className="mt-8 w-full flex justify-between gap-6">
-  {infos.map((info) => (
-   <div className="w-full h-32 bg-card border shadow-lg rounded-md px-2 flex" >
+  {infos.map((info, i) => (
+   <div key={i} className="w-full h-32 bg-card border shadow-lg rounded-md px-2 flex" >
     <div className="w-1/4 flex justify-center">
      <div className="flex flex-col justify-center">
       {info.icon}

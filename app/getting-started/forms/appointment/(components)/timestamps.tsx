@@ -1,10 +1,9 @@
 "use client";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import useAsyncEffect from "@/lib/asyncEffect";
 import axios, { AxiosError } from "axios";
 import { CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThreeDot } from "react-loading-indicators";
 import { toast } from "sonner";
 import LoadingIndicator from "../../(components)/LoadingIndicator";
@@ -40,7 +39,7 @@ const Timestamps = ({
           setBookingLoading(false)
 
           toast.warning("Whoops!", {
-            
+
             description: res.data.error
           })
         }
@@ -65,11 +64,13 @@ const Timestamps = ({
 
   const [timestamps, setTimestamps] = useState<Timestamp[]>([])
 
-  useAsyncEffect(async () => {
-    setTimestampsLoading(true)
-    const res = await axios.get("/api/appointment/timespans?date=" + day.toISOString())
-    setTimestamps(res.data as Timestamp[]);
-    setTimestampsLoading(false)
+  useEffect(() => {
+    (async () => {
+      setTimestampsLoading(true)
+      const res = await axios.get("/api/appointment/timespans?date=" + day.toISOString())
+      setTimestamps(res.data as Timestamp[]);
+      setTimestampsLoading(false)
+    })()
   }, [day])
 
   const [choosenTimestamp, setChoosenTimestamp] = useState<Timestamp | undefined>(undefined)

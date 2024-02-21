@@ -26,7 +26,7 @@ export default function SmoothScroll({ children, otherProps }: { children: React
     locomotiveScrollRef.current?.destroy();
    };
   })();
- }, [pathname, container]);
+ }, [pathname, container, otherProps]);
 
  return <div data-scroll-container data-scroll-section ref={container}>
   {children}
