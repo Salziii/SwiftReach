@@ -1,6 +1,6 @@
 <details>
  <summary>
-  <code>GET</code> <code><b>/account</b></code>
+  <code>GET</code> <code><b>/api/account</b></code>
  </summary>
 
  > Returnes something as long as the requester is logged in, i.e. the login cookies are available
@@ -24,10 +24,10 @@
 
 <details>
  <summary>
-  <code>POST</code> <code><b>/account</b></code>
+  <code>POST</code> <code><b>/api/account</b></code>
  </summary>
 
- ### Parameters
+ ## Parameters
 
  #### Body
 
@@ -37,7 +37,7 @@
  }
  ```
 
- ### Response
+ ## Response
 
  #### `200`
 
@@ -54,6 +54,8 @@
  }
  ```
 
+---
+
  #### `201`
 
  ```typescript
@@ -66,10 +68,10 @@
 
 <details>
  <summary>
-  <code>GET</code> <code><b>/account/[id]</b></code>
+  <code>GET</code> <code><b>/api/account/[id]</b></code>
  </summary>
 
- ### Parameters
+ ## Parameters
 
  #### Params
 
@@ -77,7 +79,7 @@
  |-|-|-|
  | **id** | `number` | *The Account ID* |
 
- ### Response
+ ## Response
 
  #### `200`
 
