@@ -7,15 +7,12 @@ type LoadingIndicatorProps = {
 };
 
 const Buttons = ({ loading, children }: LoadingIndicatorProps) => {
- if (loading) {
-  return (
-   <div className="flex flex-col justify-center">
-    <ThreeDot variant="bob" color="#7e22ce" size="medium" />
-   </div>
-  );
- }
+ if (loading)
+  return <div className="w-full h-full flex flex-col justify-center">
+   <ThreeDot variant="bob" color="#7e22ce" size="medium" />
+  </div>
 
- return <>{children}</>;
+ return children;
 };
 
 export default Buttons;

@@ -1,67 +1,55 @@
-"use client";
+import FirstSection from "./sections/1";
+import SecondSection from "./sections/2";
+import ThirdSection from "./sections/3";
+import FourthSection from "./sections/4";
 
-import Image from "next/image";
-import { DefaultMotion } from "@/app/(components)/motion";
-
-const steps = [
- {
-  title: "Step 1",
-  img: { src: "/strategy/1.webp", width: 196, height: 151 },
-  description: <></>,
- },
- {
-  title: "Step 2",
-  img: { src: "/strategy/2.webp", width: 195, height: 135 },
-  description: <></>,
- },
- {
-  title: "Step 3",
-  img: { src: "/strategy/3.webp", width: 196, height: 140 },
-  description: <></>,
- },
- {
-  title: "Step 4",
-  img: { src: "/strategy/4.webp", width: 196, height: 140 },
-  description: <></>,
- },
+const sections:React.JSX.Element[] = [
+ <FirstSection key={1} />,
+ <SecondSection key={2} />,
+ <ThirdSection key={3} />,
+ <FourthSection key={4} />
 ];
 
 export default function Strategy() {
  return (
-  <section className="w-full" id="strategy">
-   <div className="w-full flex flex-col justify-center my-20">
-    <DefaultMotion className="flex justify-center mb-6 text-5xl font-bold">
-     Wie Wir Es Angehen
-    </DefaultMotion>
-    <DefaultMotion className="flex justify-center mb-16 text-2xl font-normal">
-     Unser erfahrenes Mediateam verwaltet die Werbekampagnen für Ihr Unternehmen
-     auf Plattformen, wie Facebook, Instagram, Snapchat, Pinterest, TikTok,
-     Taboola, Outbrain usw.
-    </DefaultMotion>
-    <div className="flex justify-center">
-     <div className="flex justify-between w-4/5">
-      {steps.map((step, i) => (
-       <div className="w-full group">
-        <DefaultMotion delay={0.1 * i} className="w-full flex justify-center">
-         <Image
-          className="mb-2 transition transform group-hover:-translate-y-2 group-hover:scale-105"
-          src={step.img.src}
-          width={step.img.width}
-          height={step.img.height}
-          alt={step.title}
-         />
-        </DefaultMotion>
-        <DefaultMotion
-         delay={0.1 * i}
-         className="flex justify-center font-semibold text-2xl"
-        >
-         {step.title}
-        </DefaultMotion>
-       </div>
-      ))}
-     </div>
+  <section className="h-[150vh] shadow-inner-y" data-scroll-section id="strategy">
+   <div
+    className="w-screen h-screen"
+    data-scroll
+    data-scroll-sticky
+    data-scroll-target="#strategy"
+   >
+    <div
+     className="flex w-[250vw] h-screen"
+     data-scroll
+     data-scroll-speed="40"
+     data-scroll-direction="horizontal"
+    >
+     <div className="w-[50vw]" />
+     {sections.map((section, i) => (
+      <div key={i} className={`w-[50vw] h-full`}>
+       {section}
+      </div>
+     ))}
+     <div className="w-[50vw]" />
     </div>
    </div>
   </section>
  );
+}
+
+{
+ /* <div className="w-full flex flex-col justify-center py-20">
+    <DefaultMotion className="flex justify-center mb-6 text-5xl font-bold">
+     Wie Wir Es Angehen
+    </DefaultMotion>
+    <DefaultMotion className="flex justify-center mb-16 text-2xl font-normal">
+     Unser Medienteam verwaltet die Werbeanzeigen für Ihr Unternehmen auf Plattformen, wie Facebook, Instagram, YouTube, Google, Pinterest, TikTok usw.
+    </DefaultMotion>
+    <div className="flex justify-center">
+     <div className="flex justify-between w-4/5">
+      
+     </div>
+    </div>
+   </div> */
 }
