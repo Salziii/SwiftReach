@@ -16,7 +16,12 @@ import {
  TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { PlusCircle, Users2 } from "lucide-react";
+import Image from "next/image";
 import { ThreeDot } from "react-loading-indicators";
+
+const randomImage = (quality: number = 1000, uid?: string) => {
+ return `https://i.pravatar.cc/${quality}${uid ? "?u=" + uid : ""}`;
+};
 
 export default function Meetings({
  meetings,
@@ -58,7 +63,6 @@ export default function Meetings({
        ?.sort(
         (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
        )
-       .sort((a) => new Date(a.end) <= new Date() ? 1 : -1 )
        .map((meeting, i) =>
         (() => {
          const started = new Date(meeting.start) <= new Date();
@@ -97,12 +101,12 @@ export default function Meetings({
                  >
                   <div className="flex flex-col justify-center">
                    <div className="h-[24px] w-[24px] rounded-full border overflow-hidden">
-                    <FallbackImage
+                    <Image
                      width={24}
                      height={24}
                      alt=""
-                     src={``}
-                     fallback={`/profilepictures/default.png`}
+                     // loader={() => randomImage()}
+                     src={randomImage(1000, member.email)}
                     />
                    </div>
                   </div>
