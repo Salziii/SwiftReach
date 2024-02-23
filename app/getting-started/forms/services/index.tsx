@@ -1,11 +1,8 @@
 import axios from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
-import LoadingIndicator from "../(components)/LoadingIndicator";
+import { useState } from "react";
 import Buttons from "../(components)/Buttons";
+import LoadingIndicator from "../(components)/LoadingIndicator";
 import ServiceCard from "./(components)/ServiceCard";
-import { toast } from "sonner";
-import { Painpoint, Service } from "@/sql/models";
-import { Model } from "sequelize-typescript";
 
 const Services = ({
   button,

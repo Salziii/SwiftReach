@@ -1,10 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import "@/sql/models";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 
 const font = Inter({

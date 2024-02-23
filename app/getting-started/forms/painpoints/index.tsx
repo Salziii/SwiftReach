@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Buttons from "../(components)/Buttons";
 import PainpointCard from "./(components)/PainpointCard";
-import LoadingIndicator from "../(components)/LoadingIndicator";
-import { toast } from "sonner";
-import axios from "axios";
+import { ThreeDot } from "react-loading-indicators";
 
-const Painpoints = (props: any) => {
- const { button, data, setData } = props;
+const Painpoints = ({
+ button,
+ data,
+ setData,
+}: {
+ button: any;
+ data: any;
+ setData: (data: any) => any;
+}) => {
+ const [loading, setLoading] = useState<boolean>(true);
+ const [painpoints, setPainpoints] = useState<any[] | undefined>();
 
- const [loading, setLoading] = useState(false);
+ useEffect(() => {
+  (async () => {
+   setLoading(true);
+   const res = await axios.get("/api/painpoints");
+   setPainpoints(res.data);
+   setLoading(false);
+  })();
+ }, []);
 
- const [painpoints, setPainpoints] = useState<any[]>([]);
  const [selectedPainpoints, setSelectedPainpoints] = useState<number[]>([]);
 
  const handleClick = (i: number) => {
@@ -23,41 +37,31 @@ const Painpoints = (props: any) => {
   setSelectedPainpoints(tempArray);
  };
 
- useEffect(() => {
-  setLoading(true);
-  axios
-   .get("/api/painpoints", {})
-   .then((res) => res.data)
-   .then((data) => {
-    setPainpoints(data);
-    setLoading(false);
-   });
- }, []);
-
  async function submit() {
   setData({
    ...data,
-   painpoints: selectedPainpoints.map((i) => painpoints.at(i).id),
+   painpoints: selectedPainpoints.map((i) => painpoints?.at(i).id),
   });
   return true;
  }
 
  return (
   <div className="w-5/6 flex flex-col justify-center">
-   <LoadingIndicator loading={loading || !painpoints}>
+   {!painpoints || loading ? (
+    <ThreeDot color="#782dac" size="large" variant="bob" />
+   ) : (
     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
      {painpoints.map((painpoint, i) => (
       <PainpointCard
-        key={i}
-        painpoint={painpoint}
-        selected={selectedPainpoints[i] == i}
-        handleClick={handleClick}
-        index={i}
+       key={i}
+       handleClick={() => handleClick(i)}
+       painpoint={painpoint}
+       selected={selectedPainpoints[i] == i}
       />
      ))}
     </div>
-    <Buttons submit={submit} button={button} />
-   </LoadingIndicator>
+   )}
+   <Buttons submit={submit} button={button} />
   </div>
  );
 };
