@@ -31,7 +31,7 @@ export default function Verify() {
      router.push("/userarea");
    }
   })();
- }, []);
+ });
 
  async function verify() {
   if (!password) {

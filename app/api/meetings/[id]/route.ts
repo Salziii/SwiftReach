@@ -22,7 +22,7 @@ export async function GET(
     label: true,
     end: true,
     start: true,
-    accounts: true,
+    members: true,
    },
   });
 

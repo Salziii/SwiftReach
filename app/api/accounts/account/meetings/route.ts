@@ -15,9 +15,9 @@ export async function GET(request: NextRequest) {
     label: true,
     end: true,
     start: true,
-    accounts: true,
+    members: true,
    },
-   where: { accounts: { some: { id: account.id } } },
+   where: { members: { some: { id: account.id } } },
   });
 
   return NextResponse.json(meetings, { status: 200 });

@@ -135,7 +135,7 @@ const Appointment = ({
           <div className={`transition-all ${choosenDay ? "w-1/3" : "w-0 hidden"}`}>
             {
               choosenDay
-                ? <Timestamps day={new Date(choosenDay.date)} data={data} finish={button.submit} />
+                ? <Timestamps day={new Date(choosenDay.date)} finish={button.submit} />
                 : <></>
             }
           </div>
