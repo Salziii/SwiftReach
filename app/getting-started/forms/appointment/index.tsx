@@ -43,7 +43,7 @@ const Appointment = ({
     (async () => {
       setLoadingDays(true)
       try {
-        const data = (await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())).data
+        const data = (await axios.get("/api/meetings/days?date=" + choosenMonth.toISOString())).data
         setDays(data)
         setPadding(weekdays.indexOf(new Date(data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
       } catch (error) {

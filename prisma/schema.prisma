@@ -40,7 +40,7 @@ model Meeting {
  start DateTime
  end DateTime
 
- accounts Account[]
+ members Account[]
 
 }
 
@@ -52,7 +52,7 @@ enum Role {
 model Company {
  id Int @id @default(autoincrement())
 
- name String @unique
+ name String
 
  emailDomain String? @unique
  contactEmail String @unique
@@ -80,6 +80,7 @@ model Step {
 }
 
 model CompanySteps {
+ id Int @id @default(autoincrement())
  step Step @relation(fields: [stepId], references: [id])
  stepId Int
  company Company @relation(fields: [companyId], references: [id])
@@ -136,6 +137,7 @@ model Service {
 }
 
 model SubscriptionServices {
+ id Int @id @default(autoincrement())
 
  service Service @relation(fields: [serviceId], references: [id])
  serviceId Int
