@@ -58,6 +58,7 @@ export default function Meetings({
        ?.sort(
         (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
        )
+       .sort((a) => new Date(a.end) <= new Date() ? 1 : -1 )
        .map((meeting, i) =>
         (() => {
          const started = new Date(meeting.start) <= new Date();
