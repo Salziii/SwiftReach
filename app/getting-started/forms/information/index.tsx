@@ -1,16 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Buttons from "../(components)/Buttons";
-import { TextInput } from "../(components)/FormInputs/TextInput";
+import { TextInput } from "../../../(components)/FormInputs/TextInput";
 
-import LoadingIndicator from "../(components)/LoadingIndicator";
-import { toast } from "sonner";
 import axios from "axios";
+import { ThreeDot } from "react-loading-indicators";
+import { toast } from "sonner";
+import { emailValid } from "@/lib/utils";
 
-const Information = (props: any) => {
- const { button, data, setData } = props;
-
+const Information = ({
+ button,
+ data,
+ setData,
+}: {
+ button: any;
+ data: any;
+ setData: (data: any) => any;
+}) => {
  const [loading, setLoading] = useState(false);
 
  const [name, setName] = useState("");
@@ -19,43 +26,44 @@ const Information = (props: any) => {
  const [email, stEmail] = useState("");
  const [emailError, setEmailError] = useState(false);
 
- const submit = async () : Promise<boolean> => {
-
+ const submit = async (): Promise<boolean> => {
   if (!(name && email)) {
    setNameError(!name);
    setEmailError(!email);
    toast.warning("Whoops!", {
     description: "Please fill out the missing fields!",
    });
-   return false
+   return false;
   }
+
+  if (!emailValid(email)) {
+   setEmailError(!email);
+   toast.warning("Whoops!", {
+    description: "Please provide a valid email!",
+   });
+  }
+
+  setData({
+   ...data,
+   email: email,
+   name: name,
+  });
 
   try {
    setLoading(true);
 
-   const { company } = (await axios.post("/api/company", {
+   await axios.post("/api/companies", {
     name: name,
     contactEmail: email,
-   })).data;
-
-   setData({
-    ...data,
-    companyId: company.id,
    });
 
-   await axios.post("/api/company/painpoints", {
-    companyId: company.id,
-    painpoints: data.painpoints,
-   });
-
-   const { account } = (await axios.post("/api/account", {
+   await axios.post("/api/accounts", {
     email: email,
-   })).data;
-
-   setData({
-    ...data,
-    accountId: account.id,
    });
+
+   // await axios.post("/api/companies/company/painpoints", { ! TODO
+   //  painpoints: data.painpoints
+   // });
 
    setLoading(false);
 
@@ -63,7 +71,7 @@ const Information = (props: any) => {
   } catch (error: any) {
    setLoading(false);
 
-   console.log(error)
+   console.error(error);
 
    toast.warning("Whoops!", {
     description: error.response?.data.error,
@@ -71,18 +79,15 @@ const Information = (props: any) => {
 
    return false;
   }
- }
+ };
 
  return (
   <div className="w-1/2 flex flex-col justify-center">
    <div className="flex justify-center">
-    <LoadingIndicator loading={loading}>
+    {loading ? (
+     <ThreeDot color="#782dac" size="large" variant="bob" />
+    ) : (
      <div className="w-full flex flex-col justify-center gap-4">
-      {/* <div className="flex flex-col pb-4">
-       <div className="flex justify-center text-[32px] text-white">
-        
-       </div>
-      </div> */}
       <TextInput
        label="Unternehmens Name"
        placeholder="SwiftReach"
@@ -91,6 +96,7 @@ const Information = (props: any) => {
        error={nameError}
       />
       <TextInput
+       type="email"
        label="E-Mail"
        placeholder="contact@swiftreach.de"
        value={email}
@@ -98,7 +104,7 @@ const Information = (props: any) => {
        error={emailError}
       />
      </div>
-    </LoadingIndicator>
+    )}
    </div>
    <Buttons submit={submit} button={button} />
   </div>

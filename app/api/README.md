@@ -1,6 +1,6 @@
 <details>
  <summary>
-  <code>GET</code> <code><b>/api/account</b></code>
+  <code>GET</code> <code><b>/api/accounts</b></code>
  </summary>
 
  > Returnes something as long as the requester is logged in, i.e. the login cookies are available
@@ -24,7 +24,7 @@
 
 <details>
  <summary>
-  <code>POST</code> <code><b>/api/account</b></code>
+  <code>POST</code> <code><b>/api/accounts</b></code>
  </summary>
 
  ## Parameters
@@ -68,7 +68,7 @@
 
 <details>
  <summary>
-  <code>GET</code> <code><b>/api/account/[id]</b></code>
+  <code>GET</code> <code><b>/api/accounts/[id]</b></code>
  </summary>
 
  ## Parameters
@@ -95,4 +95,101 @@
  }
  ```
 
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/companies</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/companies/[id]</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/companies/company</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>POST</code> <code><b>/api/companies</b></code>
+ </summary>
+</details>
+
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/meetings</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/meetings/[id]</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>POST</code> <code><b>/api/meetings</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/meetings/timespans</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/meetings/timespans/available</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/meetings/days</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>POST</code> <code><b>/api/steps</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/steps/[id]</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>POST</code> <code><b>/api/services</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/services/[id]</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>POST</code> <code><b>/api/painpoints</b></code>
+ </summary>
+</details>
+
+<details>
+ <summary>
+  <code>GET</code> <code><b>/api/painpoints/[id]</b></code>
+ </summary>
 </details>

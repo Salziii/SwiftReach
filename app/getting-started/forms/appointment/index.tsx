@@ -43,7 +43,7 @@ const Appointment = ({
     (async () => {
       setLoadingDays(true)
       try {
-        const data = (await axios.get("/api/appointment/days?date=" + choosenMonth.toISOString())).data
+        const data = (await axios.get("/api/meetings/days?date=" + choosenMonth.toISOString())).data
         setDays(data)
         setPadding(weekdays.indexOf(new Date(data[0]!.date).toLocaleDateString("default", { weekday: "short" })))
       } catch (error) {
@@ -135,7 +135,7 @@ const Appointment = ({
           <div className={`transition-all ${choosenDay ? "w-1/3" : "w-0 hidden"}`}>
             {
               choosenDay
-                ? <Timestamps day={new Date(choosenDay.date)} data={data} finish={button.submit} />
+                ? <Timestamps day={new Date(choosenDay.date)} finish={button.submit} />
                 : <></>
             }
           </div>
