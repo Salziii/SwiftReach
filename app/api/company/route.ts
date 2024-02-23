@@ -1,6 +1,5 @@
 import { Sender, sendMail } from "@/lib/mailer";
 import { emailValid, getEmailDomain, isCustomEmail } from "@/lib/utils";
-import { Account, Company } from "@/sql/models";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import jwt from "jsonwebtoken";

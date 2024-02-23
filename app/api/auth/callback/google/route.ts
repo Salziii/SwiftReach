@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   if (err) return NextResponse.json({ error: err }, { status: 400 });
 
   writeFile(
-   process.env.GOOGLE_CREDENTIALS_TOKEN_PATH!,
+   "google/token.json",
    JSON.stringify(token),
    (err) => {
     if (err) return NextResponse.json({ error: err }, { status: 500 })

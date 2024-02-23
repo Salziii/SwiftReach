@@ -1,0 +1,164 @@
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id Int @id @default(autoincrement())
+
+  email String @unique
+  name String
+  
+  company Company? @relation(fields: [companyId], references: [id])
+  companyId Int?
+
+  role Role @default(USER)
+
+  verificationCode String? @unique
+  password String?
+
+  subscriptionSales Subscription[]
+  serviceSales SubscriptionServices[]
+
+  meetings Meeting[]
+
+  @@unique([companyId, name])
+
+}
+
+model Meeting {
+ id Int @id @default(autoincrement())
+
+ label String
+
+ link String?
+
+ start DateTime
+ end DateTime
+
+ accounts Account[]
+
+}
+
+enum Role {
+ EMPLOYEE
+ USER
+}
+
+model Company {
+ id Int @id @default(autoincrement())
+
+ name String @unique
+
+ emailDomain String? @unique
+ contactEmail String @unique
+
+ stripeId String @unique
+
+ members Account[]
+
+ steps CompanySteps[]
+
+ painpoints Painpoint[]
+
+}
+
+model Step {
+ id Int @id @default(autoincrement())
+
+ label String
+ description String
+
+ videoId String
+
+ companys CompanySteps[]
+
+}
+
+model CompanySteps {
+ step Step @relation(fields: [stepId], references: [id])
+ stepId Int
+ company Company @relation(fields: [companyId], references: [id])
+ companyId Int
+ status StepStatus @default(PENDING)
+ @@unique([stepId, companyId])
+}
+
+enum StepStatus {
+ COMPLETE
+ AVAILABLE
+ PENDING
+}
+
+model Subscription {
+ id Int @id @default(autoincrement())
+
+ seller Account @relation(fields: [sellerId], references: [id])
+ sellerId Int
+
+ start DateTime @default(now())
+ minimum DateTime @default(now())
+ end DateTime?
+
+ basFee Int @default(0)
+
+ interval Interval @default(MONTH)
+
+ services SubscriptionServices[]
+
+}
+
+enum Interval {
+ MONTH
+}
+
+model Service {
+ id Int @id @default(autoincrement())
+
+ label String @unique
+ description String?
+
+ price Int @default(0)
+ performanceFee Int @default(0)
+
+ saturated Boolean 
+
+ image String? // Fallback Image CS nicht vergessen
+
+ subscriptions SubscriptionServices[]
+
+ painpoints Painpoint[]
+
+}
+
+model SubscriptionServices {
+
+ service Service @relation(fields: [serviceId], references: [id])
+ serviceId Int
+
+ subscription Subscription @relation(fields: [subscriptionId], references: [id])
+ subscriptionId Int
+
+ seller Account @relation(fields: [sellerId], references: [id])
+ sellerId Int
+
+ @@unique([serviceId, subscriptionId])
+
+}
+
+model Painpoint {
+ id Int @id @default(autoincrement())
+
+ label String @unique
+ description String?
+
+ image String? // Fallback Image CS nicht vergessen
+
+ services Service[]
+ companys Company[]
+
+}

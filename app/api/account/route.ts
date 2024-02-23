@@ -1,99 +1,122 @@
-import { Sender, sendMail } from "@/lib/mailer";
 import { emailValid, getEmailDomain, isCustomEmail } from "@/lib/utils";
-import { Account, Company } from "@/sql/models";
+import { Account, Prisma, PrismaClient } from "@prisma/client";
+import { randomBytes } from "crypto";
+import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import { Op } from "sequelize";
-import { randomBytes } from "crypto";
-import { sendVerificationMail } from "../(mailer)/mails";
-import jwt from "jsonwebtoken";
-import { format } from "../(utils)/formatter";
+import { sendVerificationMail } from "../(utils)/mails";
+import db from "@/prisma/database";
 
 export async function GET(request: NextRequest) {
-  try {
-    let depth = Number(request.nextUrl.searchParams.get("depth"))
+ try {
+  const token: string | undefined = request.cookies.get("token")?.value;
 
-    let id = request.nextUrl.searchParams.get("id");
-    const token: string | undefined = request.cookies.get("token")?.value
+  if (!token) return NextResponse.json({ error: "Log In!" }, { status: 403 });
 
-    if (!id) {
-      if (!token)
-        return NextResponse.json({ error: "Provide A Account ID Or Log In!" }, { status: 400 })
-      const data: any = jwt.verify(token!, process.env.JWT_SECRET_KEY!)
-      id = data.id
-    }
+  const data: any = jwt.verify(token!, process.env.JWT_SECRET_KEY!);
 
-    const account = await Account.findByPk(id!)
+  const account = await db.account.findUnique({
+   where: { id: data.id },
+   select: {
+    id: true,
+    role: true,
+    name: true,
+    email: true,
+    company: true,
+    meetings: true,
+    serviceSales: true,
+    subscriptionSales: true,
+   },
+  });
 
-    if (!account)
-      return NextResponse.json(
-        { error: `Account with ID ${id} does not exist!` },
-        { status: 400 }
-      );
-
-    return NextResponse.json(await format(account, depth), { status: 200 });
-
-  } catch (err) {
-    console.log(err)
-    return NextResponse.json({ error: "Contact an Admin!" }, { status: 500 })
-  }
+  return NextResponse.json(account, { status: 200 });
+ } catch (err) {
+  console.log(err);
+  return NextResponse.json(
+   { error: "Internal Server Error - We are working on it!" },
+   { status: 500 }
+  );
+ }
 }
 
 export async function POST(request: NextRequest) {
-  const res = await request.json();
-  const email: string = res.email;
+ const email: string = await request.json().then((json) => json.email);
 
-  if (!email)
-    return NextResponse.json({ error: "Provide A Email!" }, { status: 400 });
-  if (!emailValid(email))
-    return NextResponse.json(
-      { error: "Provide A Valid Email!" },
-      { status: 400 }
-    );
+ if (!email)
+  return NextResponse.json({ error: "Provide A Email!" }, { status: 400 });
 
-  const name = email.replace("@" + getEmailDomain(email), "");
+ if (!emailValid(email))
+  return NextResponse.json(
+   { error: "Provide A Valid Email!" },
+   { status: 400 }
+  );
 
-  let account = await Account.findOne({ where: { email: email } });
+ const account = await db.account.findFirst({
+  where: { email: email },
+  select: {
+   id: true,
+   role: true,
+   name: true,
+   email: true,
+   company: true,
+   meetings: true,
+   serviceSales: true,
+   subscriptionSales: true
+  },
+ });
 
-  if (account) {
-    const response = NextResponse.json({ account: account }, { status: 200 });
-    response.cookies.set("token", jwt.sign(account.toJSON(), process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }), { httpOnly: true })
-    return response
-  }
+ if (account) {
+  const response = NextResponse.json(account, { status: 200 });
 
-  const emailDomain = isCustomEmail(email) ? getEmailDomain(email) : "";
+  response.cookies.set(
+   "token",
+   jwt.sign(account, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+   { httpOnly: true }
+  );
 
-  if (emailDomain === "swiftreach.de") {
-    return NextResponse.json({ employee: true });
-  }
+  return response;
+ }
 
-  let company = await Company.findOne({
-    where: { [Op.or]: [{ emailDomain: emailDomain }, { contactEmail: email }] },
-  });
-  const isRootAccount: boolean = !!(await Company.findOne({
-    where: { contactEmail: email },
-  }));
+ const emailDomain = isCustomEmail(email) ? getEmailDomain(email) : "";
 
-  if (!company) {
-    return NextResponse.json(
-      { error: "Register your Company, to get started!" },
-      { status: 400 }
-    );
-  }
+ if (emailDomain === "swiftreach.de") {
+  return NextResponse.json({ employee: true });
+ }
 
-  const verificationCode = randomBytes(8).toString("hex");
+ let company = await db.company.findFirst({
+  where: { OR: [{ emailDomain: emailDomain }, { contactEmail: email }] },
+ });
 
-  account = await Account.create({
-    name: isRootAccount ? company.dataValues.name : name,
-    email: email,
-    employee: false,
-    company: company.dataValues.id,
-    verificationCode: verificationCode,
-  });
+ if (!company) {
+  return NextResponse.json(
+   { error: "This company is not registered!" },
+   { status: 400 }
+  );
+ }
 
-  sendVerificationMail(email, verificationCode);
+ const verificationCode = randomBytes(8).toString("hex");
+ const name = email.replace("@" + getEmailDomain(email), "");
 
-  const response = NextResponse.json({ account: account }, { status: 201 });
-  response.cookies.set("token", jwt.sign(account.toJSON(), process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }), { httpOnly: true })
-  return response
+ const newAccount = await db.account.create({
+  data: {
+   name: name,
+   email: email,
+   role: "USER",
+   company: {
+    connect: { id: company.id },
+   },
+   verificationCode: verificationCode,
+  },
+ });
 
+ sendVerificationMail(email, verificationCode);
+
+ const response = NextResponse.json(account, { status: 201 });
+
+ response.cookies.set(
+  "token",
+  jwt.sign(newAccount, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+  { httpOnly: true }
+ );
+ return response;
 }
