@@ -19,9 +19,19 @@ const credentials = {
  },
 };
 
+const token = {
+ access_token:
+  "ya29.a0AfB_byDxLuf02sg3T0JtxcS7vV3B1v2cjduVZzART1l5lCTaGaFfOKCkuFPi8ER1NdbZnZfRT7JTrcSDrDyG5Co9EA-pbsgsnAXU1D0LTNXJwUqvwSWNl3YkDCeakLa04a7V6_uSvcz1xXXjN5kqsSmvipLmprVOIYtZaCgYKAcISARISFQHGX2MiBBSZCoFPMxmkdZeDAKgWwA0171",
+ refresh_token:
+  "1//09jqsJoreQEibCgYIARAAGAkSNwF-L9Ir0HQCtswswvRx7L-CyhCPFX-41Gh6OII7HuX0euznPNCPtryGFLL4J9r50sWeaj-21rQ",
+ scope: "https://www.googleapis.com/auth/calendar",
+ token_type: "Bearer",
+ expiry_date: 1706815297103,
+};
+
 const getOAuth2Client = () =>
  new Promise<OAuth2Client>((resolve, reject) => {
-  const { client_secret, client_id, redirect_uris } = credentials.web
+  const { client_secret, client_id, redirect_uris } = credentials.web;
 
   const oAuth2Client = new google.auth.OAuth2(
    client_id,
@@ -29,13 +39,9 @@ const getOAuth2Client = () =>
    redirect_uris[0]
   );
 
-  readFile("./token.json", (err, token) => {
-   if (!err) oAuth2Client.setCredentials(JSON.parse(token.toString()));
-   else
-    console.error("Could not set Credentials to oAuth2Client, due to " + err);
+  oAuth2Client.setCredentials(token);
 
-   return resolve(oAuth2Client);
-  });
+  return resolve(oAuth2Client);
  });
 
 export { getOAuth2Client };
