@@ -125,7 +125,7 @@ export default function Dashboard() {
         <p className="font-bold">
          Dashboard - Alpha Version
         </p>
-        <p>Demo Date Is Used!</p>
+        <p>Demo Data Is Used!</p>
         <p>Report Bugs Please!</p>
        </div>
       </div>
