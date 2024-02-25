@@ -17,7 +17,7 @@ export default function SecondSection() {
      alt=""
     />
    </div>
-   <h1 className="mt-4 w-full flex justify-center font-bold text-3xl bg-gradient-to-r from-[#00BCE8] to-[#0B88A8] inline-block text-transparent bg-clip-text">
+   <h1 className="mt-4 w-full flex justify-center font-bold text-3xl bg-gradient-to-r from-[#00BCE8] to-[#0B88A8] text-transparent bg-clip-text">
     Schritt 2
    </h1>
    <h2 className="w-full flex justify-center font-bold text-5xl">
@@ -28,7 +28,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <FaPeopleRoof size={32} className="text-primary-foreground" />
+        <FaPeopleRoof size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -40,7 +40,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <GoGoal size={32} className="text-primary-foreground" />
+        <GoGoal size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -52,7 +52,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <FaRegHandshake size={32} className="text-primary-foreground" />
+        <FaRegHandshake size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -64,7 +64,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <LuBrain size={32} className="text-primary-foreground" />
+        <LuBrain size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -76,7 +76,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <Crown size={32} className="text-primary-foreground" />
+        <Crown size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -88,7 +88,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <LineChart size={32} className="text-primary-foreground" />
+        <LineChart size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
@@ -100,7 +100,7 @@ export default function SecondSection() {
      <div className="flex justify-center">
       <span className="flex flex-col justify-center pr-2">
        <div>
-        <Rocket size={32} className="text-primary-foreground" />
+        <Rocket size={32} className="text-secondary-foreground" />
        </div>
       </span>
       <p
