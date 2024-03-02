@@ -1,10 +1,9 @@
-import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AntiMobile from "./(components)/AntiMobile";
 import "./globals.css";
-import GoogleAnalytics from "@bradgarropy/next-google-analytics";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 const font = Inter({
  subsets: ["latin"],
@@ -82,19 +81,23 @@ export default function RootLayout({
 }: {
  children: React.ReactNode;
 }) {
+
  return (
   <html className="scrollbar-hidden w-full h-full" lang="de">
    <GoogleAnalytics measurementId="G-JPBRYXXHGN" />
    <body className={font.className + " w-screen scrollbar-hidden"}>
-    <ThemeProvider
+    {/* <ThemeProvider
      attribute="class"
      defaultTheme="dark"
      enableSystem
      disableTransitionOnChange
     >
+     
+    </ThemeProvider> */}
+    <AntiMobile>
      {children}
      <Toaster duration={5000} />
-    </ThemeProvider>
+    </AntiMobile>
    </body>
   </html>
  );

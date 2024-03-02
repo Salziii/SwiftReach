@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
   response.cookies.set(
    "token",
-   jwt.sign(account, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+   jwt.sign(account, process.env.JWT_SECRET_KEY!),
    { httpOnly: true }
   );
 
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
 
  response.cookies.set(
   "token",
-  jwt.sign(newAccount, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+  jwt.sign(newAccount, process.env.JWT_SECRET_KEY!),
   { httpOnly: true }
  );
  return response;

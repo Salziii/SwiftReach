@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     response.cookies.set(
      "companyToken",
-     jwt.sign(company, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+     jwt.sign(company, process.env.JWT_SECRET_KEY!),
      { httpOnly: true }
     );
 
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
 
    response.cookies.set(
     "companyToken",
-    jwt.sign(company, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+    jwt.sign(company, process.env.JWT_SECRET_KEY!),
     { httpOnly: true }
    );
 
@@ -198,7 +198,7 @@ export async function POST(request: NextRequest) {
 
    response.cookies.set(
     "companyToken",
-    jwt.sign(company, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+    jwt.sign(company, process.env.JWT_SECRET_KEY!),
     { httpOnly: true }
    );
 
@@ -220,7 +220,7 @@ export async function POST(request: NextRequest) {
 
   response.cookies.set(
    "companyToken",
-   jwt.sign(company, process.env.JWT_SECRET_KEY!, { expiresIn: "7d" }),
+   jwt.sign(company, process.env.JWT_SECRET_KEY!),
    { httpOnly: true }
   );
 
