@@ -12,7 +12,7 @@ export async function sendVerificationMail(
 ) {
  await sendMail(
   {
-   title: `Ups 🤷‍♂️ - Passwort vergessen... 😉`,
+   title: `Ups 🤷‍♂️ - Passwort fehlt... 😉`,
    message: `https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}`,
    html: `
     <a href="https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}">Hier hinzufügen!</a>
