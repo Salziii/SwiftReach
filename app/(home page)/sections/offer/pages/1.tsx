@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function FirstPage() {
  return (
   <div className="h-screen w-full flex justify-center py-16 z-0">
-   <div className="flex flex-col justify-center max-w-3xl">
+   <div className="flex flex-col justify-center max-w-3xl z-50">
     <motion.h1
      transition={{
       type: "spring",

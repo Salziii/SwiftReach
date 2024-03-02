@@ -6,36 +6,36 @@ import ScrollHint from "../../(components)/ScrollHint";
 
 export default function Hero() {
  return (
-  <section className="w-full h-screen shadow-inner-b z-30" data-scroll-section>
+  <section className="w-screen h-screen shadow-inner-b z-30" data-scroll-section>
    <ScrollHint />
    <div
-    className="flex flex-col xl:flex-row justify-start"
+    className="flex flex-col lg:flex-row justify-start"
     data-scroll
     data-scroll-speed="-5"
    >
     <div
-     className="w-1/2 flex flex-col justify-center"
+     className="w-full flex flex-row justify-center"
      data-scroll
      data-scroll-speed="3"
      data-scroll-direction="horizontal"
     >
      <Image
-      className="block md:hidden xl:block h-full w-full scale-90"
-      src="/hero.ig-phone.webp"
+      className="block h-full w-full scale-90"
+      src="/hero/2.webp"
       alt=""
-      height={4167}
-      width={4167}
+      height={1046}
+      width={885}
       priority
      />
     </div>
     <div
-     className="pt-0 sm:pt-10 md:pt-32 xl:pt-0 w-full xl:w-1/2 flex justify-center"
+     className="pt-0 w-full flex justify-center"
      data-scroll
      data-scroll-speed="-3"
      data-scroll-direction="horizontal"
     >
      <div className="flex flex-col justify-center max-w-3xl">
-      <div className="mb-8 font-bold text-2xl md:text-5xl">
+      <div className="mb-4 font-bold text-4xl">
        <span className="mr-4">Ihre Werbung auf</span>
        <TypeAnimation
         sequence={[
@@ -58,11 +58,11 @@ export default function Hero() {
         repeat={Infinity}
        />
       </div>
-      <div className="pb-6 font-normal text-xl md:text-2xl">
+      <div className="pb-4 font-normal text-xl">
        Wir verhelfen Ihrem Unternehmen, durch bezahlte Werbung auf
       </div>
-      <div className="text-2xl md:text-3xl pb-6">
-       <div className="flex pb-2">
+      <div className="text-2xl pb-6">
+       <div className="flex">
         <span className="flex flex-col justify-center pr-3">
          <Users2 size={45} className="pr-2 text-secondary-foreground" />
         </span>
@@ -70,32 +70,32 @@ export default function Hero() {
          Gezielte Zielgruppenansprache
         </p>
        </div>
-       <div className="flex pb-2">
+       <div className="flex">
         <span className="flex flex-col justify-center pr-3">
          <Eye size={45} className="pr-2 text-secondary-foreground" />
         </span>
         <p className="flex flex-col justify-center">Erhöhte Online-Präsenz</p>
        </div>
-       <div className="flex pb-2">
+       <div className="flex">
         <span className="flex flex-col justify-center pr-3">
          <PiggyBank size={45} className="pr-2 text-secondary-foreground" />
         </span>
         <p className="flex flex-col justify-center">Maximalen ROI</p>
        </div>
-       <div className="flex pb-2">
+       <div className="flex">
         <span className="flex flex-col justify-center pr-3">
          <Ruler size={45} className="pr-2 text-secondary-foreground" />
         </span>
         <p className="flex flex-col justify-center">Messbare Auswirkung</p>
        </div>
-       <div className="flex pb-2">
+       <div className="flex">
         <span className="flex flex-col justify-center pr-3">
          <LineChartIcon size={45} className="pr-2 text-secondary-foreground" />
         </span>
         <p className="flex flex-col justify-center">Schnelle Ergebnisse</p>
        </div>
       </div>
-      <StartButton>Jetzt Skalieren 🚀</StartButton>
+      <StartButton className="bg-transparent">Jetzt Skalieren 🚀</StartButton>
      </div>
     </div>
    </div>

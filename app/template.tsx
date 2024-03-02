@@ -11,7 +11,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
  }, []);
 
  return (
-  <div>
+  <div className="max-w-screen min-h-screen">
    <div
     className="fixed hidden lg:flex justify-center bg-background left-0 right-0 bottom-0 top-0 w-screen h-screen z-50 overflow-y-hidden max-h-full"
     id="transition-element"
