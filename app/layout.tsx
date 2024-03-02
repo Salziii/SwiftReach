@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
  ],
  authors: [{ name: "Nick Singerer", url: "nick.singerer.com" }],
- applicationName: "SwiftReach",
+ applicationName: "SwiftReach - Marketingagentur",
  creator: "Nick Singerer",
  keywords: [],
  twitter: {
@@ -35,20 +35,20 @@ export const metadata: Metadata = {
   creator: "@nicksingerer",
   creatorId: "1467726470533754880",
   images: {
-   url: "/logo.png",
+   url: "/logo-bg.jpg",
    alt: "SwiftReach Logo",
   },
  },
  openGraph: {
-  title: "SwiftReach",
+  title: "SwiftReach - Marketingagentur",
   description: "",
   url: "https://swiftreach.de",
   siteName: "SwiftReach",
   images: [
    {
-    url: "/logo.png",
-    width: 800,
-    height: 600,
+    url: "/logo-bg.jpg",
+    width: 400,
+    height: 400,
    },
   ],
   locale: "de_DE",
