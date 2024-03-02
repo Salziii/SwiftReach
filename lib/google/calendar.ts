@@ -93,10 +93,10 @@ const setAppointment = async (
 };
 
 const getAvailableTimespans = async (day: Date) => {
- const startTime = "13:30";
- const endTime = "17:45";
+ const startTime = "8:30";
+ const endTime = "17:30";
  const duration = 20 * 60 * 1000;
- const pauseDuration = 15 * 60 * 1000;
+ const pauseDuration = 10 * 60 * 1000;
 
  const start = new Date(
   day.getFullYear(),

@@ -8,11 +8,11 @@ import SmoothScroll from "@/lib/hooks/SmoothScroll";
 
 export default function Home() { 
  return <SmoothScroll>
-  <>
+  <div>
    <Hero />
    <Offer />
    <Strategy />
-  </>
+  </div>
   <Footer />
  </SmoothScroll>
 }

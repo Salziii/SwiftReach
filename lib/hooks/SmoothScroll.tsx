@@ -4,6 +4,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { Scroll } from "react-locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+import useWindowSize from "./useWindowSize";
 
 export default function SmoothScroll({ children, otherProps }: { children: React.ReactNode, otherProps?: any[] }) {
 
@@ -22,11 +25,11 @@ export default function SmoothScroll({ children, otherProps }: { children: React
     reloadOnContextChange: true
    });
 
-   return () => {
-    locomotiveScrollRef.current?.destroy();
-   };
-  })();
- }, [pathname, container, otherProps]);
+   locomotiveScrollRef.current.on("scroll", ScrollTrigger.update);
+
+   return () => locomotiveScrollRef.current?.destroy();
+  })()
+ }, [pathname]);
 
  return <div data-scroll-container data-scroll-section ref={container}>
   {children}

@@ -70,7 +70,7 @@ export default function ThirdPage() {
          whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
          viewport={{ once: true }}
         >
-         <Ban size={28} className="text-red-500" />
+         <Ban size={30} className="text-red-500 font-bold" />
         </motion.div>
        </span>
        <motion.p
