@@ -61,6 +61,9 @@ const Appointment = ({
       <div className={`${choosenDay ? "w-5/6" : "w-1/2"} h-[700px]`}>
         <div className="w-full flex">
           <div className={`transition-all p-4 ${choosenDay ? "w-2/3" : "w-full"} h-full`}>
+            <div className="flex justify-center mb-8 font-bold text-4xl">
+              Discovery Call - 20 Minuten
+            </div>
             <div className="w-full flex justify-center mt-4">
               <div className="flex flex-col justify-center">
                 <ArrowBigLeftIcon

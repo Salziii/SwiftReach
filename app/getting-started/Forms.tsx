@@ -29,19 +29,15 @@ export default function Forms() {
 
  const pages = [
   {
-   name: "Your Painpoints",
+   name: "Wie wir helfen",
    form: <Painpoints button={button} data={data} setData={setData} />,
   },
-  // {
-  //  name: "Our Help",
-  //  form: <Services button={button} data={data} setData={setData} />
-  // },
   {
-   name: "About You",
+   name: "Über Euch",
    form: <Information button={button} data={data} setData={setData} />,
   },
   {
-   name: "Appointment",
+   name: "Termin",
    form: <Appointment button={button} data={data} setData={setData} />,
   },
   {
@@ -50,8 +46,7 @@ export default function Forms() {
   }
  ];
 
- return (
-  <>
+ return <>
    <div className="w-[500px] lg:w-[1000px] hidden md:flex justify-center border-r-2 border-dashed">
     <div className="flex flex-col justify-center">
      {pages.map((page) => (
@@ -71,5 +66,4 @@ export default function Forms() {
    </div>
    <div className="w-full flex justify-center">{pages[active].form}</div>
   </>
- );
 }

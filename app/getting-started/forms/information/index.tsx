@@ -89,7 +89,7 @@ const Information = ({
     ) : (
      <div className="w-full flex flex-col justify-center gap-4">
       <TextInput
-       label="Unternehmens Name"
+       label="Name"
        placeholder="SwiftReach"
        value={name}
        set={setName}
