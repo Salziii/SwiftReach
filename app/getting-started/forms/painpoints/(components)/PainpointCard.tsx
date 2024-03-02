@@ -27,10 +27,10 @@ const PainpointCard = ({
    )}
    <div className="pl-4 flex flex-col justify-center">
     <div className="flex flex-col justify-end">
-     <h1 className="text-bold text-[20px] text-white">{painpoint.label}</h1>
+     <h1 className="font-bold text-[20px] text-white">{painpoint.label}</h1>
     </div>
     <div className="flex flex-col">
-     <p className="text-normal text-[13px] text-white">
+     <p className="text-normal text-md text-gray-300">
       {painpoint.description ?? ""}
      </p>
     </div>
