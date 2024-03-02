@@ -1,8 +1,8 @@
 import { Sender, sendMail } from "@/lib/mailer";
 
 const infoEmailSender: Sender = {
- email: "marketing@swiftreach.de",
- password: "BFs32t%vdg^@zP9vQYU2",
+ email: "contact@swiftreach.de",
+ password: "maTr15122005&niSi04092006!",
  name: "SwiftReach",
 };
 
