@@ -38,7 +38,11 @@ const Done = ({
           Email checken nicht vergessen 😉
         </h2>
         <div className="flex justify-center">
+<<<<<<< Updated upstream
           <Link className="px-10 py-3 font-medium text-base border-solid border-2 rounded-full border-white text-white bg-transparent hover:opacity-60 hover:cursor-pointer" href="/userarea" >Weiter</Link>
+=======
+          <Link className="px-10 py-3 font-medium text-base border-solid border-2 rounded-full border-white text-white bg-transparent hover:opacity-60 hover:cursor-pointer" href="api/callback/meetingArranged" >Weiter</Link>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>
