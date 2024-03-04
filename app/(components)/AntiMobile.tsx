@@ -6,7 +6,7 @@ export default function AntiMobile({ children }: { children: React.ReactNode }) 
 
  const size = useWindowSize()
 
- if (size.width! < 1750) return <div className="w-screen h-screen flex flex-col justify-center">
+ if (size.width! < 1500) return <div className="w-screen h-screen flex flex-col justify-center">
   <div className="w-full">
    <h1 className="flex justify-center font-bold text-6xl mb-10">
     ( ͡° ͜ʖ ͡° )
