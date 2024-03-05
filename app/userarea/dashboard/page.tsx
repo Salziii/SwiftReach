@@ -109,14 +109,14 @@ export default function Dashboard() {
 
  return (
   <TooltipProvider>
-   <ResizablePanelGroup direction="horizontal" className="w-screen h-screen">
+   <ResizablePanelGroup direction="horizontal" className="w-screen min-h-screen">
     <ResizablePanel
      minSize={12}
      maxSize={30}
      defaultSize={20}
      style={{ boxShadow: "0px 0px 15px 0px black" }}
     >
-     <div className="flex flex-col h-screen bg-popover">
+     <div className="flex flex-col h-full bg-popover">
       <div className="w-full flex justify-center bg-primary-foreground gap-4">
        <div className="flex flex-col justify-center">
        <IoWarningOutline size={64} />

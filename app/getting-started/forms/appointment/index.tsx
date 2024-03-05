@@ -58,7 +58,7 @@ const Appointment = ({
 
   return <div className="w-full h-full flex flex-col justify-center select-none">
     <div className="flex justify-center">
-      <div className={`${choosenDay ? "w-5/6" : "w-1/2"} h-[700px]`}>
+      <div className={`${choosenDay ? "w-full 2xl:w-5/6" : "w-full lg:w-5/6 xl:w-2/3 2xl:w-1/2"} h-[700px]`}>
         <div className="w-full flex">
           <div className={`transition-all p-4 ${choosenDay ? "w-2/3" : "w-full"} h-full`}>
             <div className="flex justify-center mb-8 font-bold text-4xl">
@@ -118,7 +118,7 @@ const Appointment = ({
                                 }
                               }}
                               className={
-                                `h-20 w-20 flex justify-center rounded-full
+                                `h-14 w-14 sm:h-20 sm:w-20 flex justify-center rounded-full
                                       ${day.available
                                   ? "bg-primary-foreground cursor-pointer text-black hover:scale-105"
                                   : "border-4 border-primary-foreground cursor-default text-primary-foreground"} 

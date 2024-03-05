@@ -82,7 +82,7 @@ const Information = ({
  };
 
  return (
-  <div className="w-1/2 flex flex-col justify-center">
+  <div className="w-5/6 lg:w-2/3 2xl:w-1/2 flex flex-col justify-center">
    <div className="flex justify-center">
     {loading ? (
      <ThreeDot color="#782dac" size="large" variant="bob" />

@@ -47,7 +47,7 @@ export default function Forms() {
  ];
 
  return <>
-   <div className="w-[500px] lg:w-[1000px] hidden md:flex justify-center border-r-2 border-dashed">
+   <div className="w-2/5 hidden md:flex justify-center border-r-2 border-dashed">
     <div className="flex flex-col justify-center">
      {pages.map((page) => (
       <>

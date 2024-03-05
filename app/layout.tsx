@@ -94,10 +94,9 @@ export default function RootLayout({
     >
      
     </ThemeProvider> */}
-    <AntiMobile>
-     {children}
-     <Toaster duration={5000} />
-    </AntiMobile>
+
+    {children}
+    <Toaster duration={5000} />
    </body>
   </html>
  );

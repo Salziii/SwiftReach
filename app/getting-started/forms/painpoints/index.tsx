@@ -48,11 +48,11 @@ const Painpoints = ({
  }
 
  return (
-  <div className="w-5/6 flex flex-col justify-center">
+  <div className="w-5/6 h-full flex flex-col md:justify-start lg:justify-center">
    {!painpoints || loading ? (
     <ThreeDot color="#782dac" size="large" variant="bob" />
    ) : (
-    <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
      {painpoints.map((painpoint, i) => (
       <PainpointCard
        key={i}
