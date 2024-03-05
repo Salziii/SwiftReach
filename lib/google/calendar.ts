@@ -92,43 +92,41 @@ const setAppointment = async (
  return res;
 };
 
-const weekdayTimes : any = {
- "Montag": {
+const weekdayTimes : any[] = [
+ {
   start: "14:00",
   end: "21:00"
  },
- "Dienstag": {
+ {
   start: "14:00",
   end: "21:00"
  },
- "Mittwoch": {
+ {
   start: "15:30",
   end: "21:00"
  },
- "Donnerstag": {
+ {
   start: "15:30",
   end: "21:00"
  },
- "Freitag": {
+ {
   start: "14:00",
   end: "21:00"
  },
- "Samstag": {
+ {
   start: "09:00",
   end: "21:00"
  },
- "Sonntag": {
+ {
   start: "09:00",
   end: "21:00"
- },
-}
+ }
+]
 
 const getAvailableTimespans = async (day: Date) => {
 
- const weekday : string = day.toLocaleDateString("default", { weekday: "long" })
-
- const startTime = weekdayTimes[weekday].start;
- const endTime = weekdayTimes[weekday].end;
+ const startTime = weekdayTimes.at(day.getDay()).start
+ const endTime = weekdayTimes.at(day.getDay()).start
  const duration = 20 * 60 * 1000;
  const pauseDuration = 10 * 60 * 1000;
 
