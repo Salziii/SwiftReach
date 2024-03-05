@@ -126,7 +126,7 @@ const weekdayTimes : any[] = [
 const getAvailableTimespans = async (day: Date) => {
 
  const startTime = weekdayTimes.at(day.getDay()).start
- const endTime = weekdayTimes.at(day.getDay()).start
+ const endTime = weekdayTimes.at(day.getDay()).end
  const duration = 20 * 60 * 1000;
  const pauseDuration = 10 * 60 * 1000;
 
