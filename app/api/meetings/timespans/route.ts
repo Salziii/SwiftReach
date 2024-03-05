@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
    return NextResponse.json({ error: "Specify a date!" }, { status: 400 });
   return NextResponse.json(await getAvailableTimespans(new Date(date)));
  } catch (err) {
+  console.error(err)
   if (err instanceof RangeError)
    return NextResponse.json({ error: err.message }, { status: 400 });
   return NextResponse.json(err, { status: 500 });
