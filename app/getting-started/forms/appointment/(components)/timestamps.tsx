@@ -50,21 +50,12 @@ const Timestamps = ({
 
  useEffect(() => {
   (async () => {
-   setTimestampsLoading(true);
-   try {
-    const res = await axios.get(
-     "/api/meetings/timespans?date=" + day.toISOString()
-    );
-    setTimestamps(res.data as Timestamp[]);
-    setTimestampsLoading(false);
-   } catch (error) {
-    if (error instanceof AxiosError) {
-     console.log(error.response?.data.error.toString())
-    }
-    console.error(error)
-    
-   }
-
+   setTimestampsLoading(true)
+   const res = await axios.get(
+    "/api/meetings/timespans?date=" + day.toISOString()
+   );
+   setTimestamps(res.data as Timestamp[]);
+   setTimestampsLoading(false);
   })();
  }, [day]);
 

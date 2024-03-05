@@ -10,6 +10,6 @@ export async function GET(request: NextRequest) {
  } catch (err) {
   if (err instanceof RangeError)
    return NextResponse.json({ error: err.message }, { status: 400 });
-  return NextResponse.json({ error: err }, { status: 500 });
+  return NextResponse.json(err, { status: 500 });
  }
 }

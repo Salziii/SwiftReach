@@ -6,7 +6,7 @@ import Card from "./(components)/card";
 
 const sections = [
    {
-      label: "Discovery Call",
+      label: "Demo Call",
       duration: "20 min",
       img: "/strategy/1.webp",
       steps: [
@@ -17,7 +17,7 @@ const sections = [
       ]
    },
    {
-      label: "FollowUp Call",
+      label: "Discovery Call",
       img: "/strategy/2.webp",
       duration: "~ 45 min",
       steps: [
