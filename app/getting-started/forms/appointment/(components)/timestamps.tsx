@@ -59,7 +59,7 @@ const Timestamps = ({
     setTimestampsLoading(false);
    } catch (error) {
     if (error instanceof AxiosError) {
-     console.log(error.response?.data.error)
+     console.log(error.response?.data.error.toString())
     }
     console.error(error)
     
