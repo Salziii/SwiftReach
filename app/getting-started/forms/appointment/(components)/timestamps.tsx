@@ -59,9 +59,10 @@ const Timestamps = ({
     setTimestampsLoading(false);
    } catch (error) {
     if (error instanceof AxiosError) {
-     toast.warning("Whoops", { description: error.response?.data.error })
+     console.log(error.response?.data.error)
     }
     console.error(error)
+    
    }
 
   })();
