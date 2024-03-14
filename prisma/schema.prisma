@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -11,156 +11,168 @@ model Account {
   id Int @id @default(autoincrement())
 
   email String @unique
-  name String
-  
-  company Company? @relation(fields: [companyId], references: [id])
+  name  String
+
+  company   Company? @relation(fields: [companyId], references: [id])
   companyId Int?
 
   role Role @default(USER)
 
   verificationCode String? @unique
-  password String?
+  password         String?
 
   subscriptionSales Subscription[]
-  serviceSales SubscriptionServices[]
+  serviceSales      SubscriptionServices[]
 
   meetings Meeting[]
 
   @@unique([companyId, name])
-
 }
 
 model Meeting {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- label String
+  label String
 
- link String?
+  link String?
 
- start DateTime
- end DateTime
+  start DateTime
+  end   DateTime
 
- members Account[]
-
+  members Account[]
 }
 
 enum Role {
- EMPLOYEE
- USER
+  EMPLOYEE
+  USER
 }
 
 model Company {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- name String
+  name String
 
- emailDomain String? @unique
- contactEmail String @unique
+  emailDomain  String? @unique
+  contactEmail String  @unique
 
- stripeId String @unique
+  stripeId String @unique
 
- members Account[]
+  members Account[]
 
- steps CompanySteps[]
+  steps CompanySteps[]
 
- painpoints Painpoint[]
-
+  painpoints Painpoint[]
 }
 
 model Step {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- label String
- description String
+  label       String
+  description String
 
- videoId String
+  videoId String
 
- companys CompanySteps[]
-
+  companys CompanySteps[]
 }
 
 model CompanySteps {
- id Int @id @default(autoincrement())
- step Step @relation(fields: [stepId], references: [id])
- stepId Int
- company Company @relation(fields: [companyId], references: [id])
- companyId Int
- status StepStatus @default(PENDING)
- @@unique([stepId, companyId])
+  id        Int        @id @default(autoincrement())
+  step      Step       @relation(fields: [stepId], references: [id])
+  stepId    Int
+  company   Company    @relation(fields: [companyId], references: [id])
+  companyId Int
+  status    StepStatus @default(PENDING)
+
+  @@unique([stepId, companyId])
 }
 
 enum StepStatus {
- COMPLETE
- AVAILABLE
- PENDING
+  COMPLETE
+  AVAILABLE
+  PENDING
 }
 
 model Subscription {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- seller Account @relation(fields: [sellerId], references: [id])
- sellerId Int
+  seller   Account @relation(fields: [sellerId], references: [id])
+  sellerId Int
 
- start DateTime @default(now())
- minimum DateTime @default(now())
- end DateTime?
+  start   DateTime  @default(now())
+  minimum DateTime  @default(now())
+  end     DateTime?
 
- basFee Int @default(0)
+  basFee Int @default(0)
 
- interval Interval @default(MONTH)
+  interval Interval @default(MONTH)
 
- services SubscriptionServices[]
-
+  services SubscriptionServices[]
 }
 
 enum Interval {
- MONTH
+  MONTH
 }
 
 model Service {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- label String @unique
- description String?
+  label       String  @unique
+  description String?
 
- price Int @default(0)
- performanceFee Int @default(0)
+  price          Int @default(0)
+  performanceFee Int @default(0)
 
- saturated Boolean 
+  saturated Boolean
 
- image String? // Fallback Image CS nicht vergessen
+  image String? // Fallback Image CS nicht vergessen
 
- subscriptions SubscriptionServices[]
+  subscriptions SubscriptionServices[]
 
- painpoints Painpoint[]
-
+  painpoints Painpoint[]
 }
 
 model SubscriptionServices {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- service Service @relation(fields: [serviceId], references: [id])
- serviceId Int
+  service   Service @relation(fields: [serviceId], references: [id])
+  serviceId Int
 
- subscription Subscription @relation(fields: [subscriptionId], references: [id])
- subscriptionId Int
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  subscriptionId Int
 
- seller Account @relation(fields: [sellerId], references: [id])
- sellerId Int
+  seller   Account @relation(fields: [sellerId], references: [id])
+  sellerId Int
 
- @@unique([serviceId, subscriptionId])
-
+  @@unique([serviceId, subscriptionId])
 }
 
 model Painpoint {
- id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
- label String @unique
- description String?
+  label       String  @unique
+  description String?
 
- image String? // Fallback Image CS nicht vergessen
+  image String? // Fallback Image CS nicht vergessen
 
- services Service[]
- companys Company[]
+  services Service[]
+  companys Company[]
+}
 
+model Prospect {
+  id Int @id @default(autoincrement())
+}
+
+model SentEmail {
+  id Int @id @default(autoincrement())
+
+  senderEmail String
+
+  email String
+
+  label String
+
+  date DateTime @default(now())
+
+  opened      Boolean   @default(false)
+  openingTime DateTime?
 }

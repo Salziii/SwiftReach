@@ -12,8 +12,7 @@ export async function sendVerificationMail(
 ) {
  await sendMail(
   {
-   title: `Ups 🤷‍♂️ - Passwort fehlt... 😉`,
-   message: `https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}`,
+   label: `Ups 🤷‍♂️ - Passwort fehlt... 😉`,
    html: `
     <a href="https://swiftreach.de/verify?email=${email}&verificationCode=${verificationCode}">Hier hinzufügen!</a>
    `,
@@ -26,8 +25,19 @@ export async function sendVerificationMail(
 export async function sendMeetingMail(email: string, invitationLink: string) {
  await sendMail(
   {
-   title: `Meeting Arranged! 🙂`,
-   message: invitationLink,
+   label: `Meeting Arranged! 🙂`,
+   text: invitationLink,
+  },
+  infoEmailSender,
+  [email]
+ );
+}
+
+export async function sendProspectEmail(email: string, content: string, label: string) {
+ await sendMail(
+  {
+   label: label,
+   text: content
   },
   infoEmailSender,
   [email]
