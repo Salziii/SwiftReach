@@ -43,8 +43,8 @@ export async function sendMail(
   const dbEmail = await prisma.sentEmail.create({ data: { label: message.label, senderEmail: sender.email, email: recipient } })
   const token = jwt.sign(dbEmail, process.env.JWT_SECRET_KEY!)
 
-  const pixel = `<img src="https://swiftreach.de/track/email/${token}" width="1" height="1" />`
-
+  const pixel = `<img src="https://swiftreach.de/api/track/email/${token}" width="1" height="1" />`
+ 
   let content
 
   if (message.text) {
