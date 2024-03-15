@@ -4,8 +4,8 @@ type TextInputProps = {
  label: string;
  placeholder?: string;
  value: string;
- set: React.Dispatch<React.SetStateAction<string>>;
- error: boolean;
+ set: (value:any) => any;
+ error: string;
  type?: HTMLInputTypeAttribute | undefined
 };
 
@@ -19,7 +19,7 @@ export const TextInput = ({
 }: TextInputProps) => {
  return (
   <div className="w-full flex flex-col gap-1">
-   <p className="text-[20px] text-white">{label}</p>
+   { error ? <p className="text-[20px] text-red-500">{error}</p> : <p className="text-[20px] text-white">{label}</p> }
    <input
     type={type ?? "text"}
     placeholder={placeholder ?? ""}

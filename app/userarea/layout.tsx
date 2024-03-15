@@ -17,7 +17,7 @@ export default function RootLayout({
  children: React.ReactNode;
 }) {
  return (
-  <LoginRequired path="/getting-started">
+  <LoginRequired path="/login">
    <div className={font.className}>{children}</div>
   </LoginRequired>
  );

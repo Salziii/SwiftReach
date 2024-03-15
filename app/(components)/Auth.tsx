@@ -1,6 +1,7 @@
 "use server";
 
 import db from "@/prisma/database";
+import { $Enums } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { RedirectType, redirect } from "next/navigation";
@@ -41,6 +42,14 @@ export async function RequireEmployee({
  if (account?.role === "USER") redirect(path, RedirectType.push);
 
  return <>{children}</>;
+}
+
+export async function getRole() : Promise<$Enums.Role | undefined> {
+ const token: string | undefined = cookies().get("token")?.value;
+ if (!token) return undefined
+ const data: any = jwt.verify(token, process.env.JWT_SECRET_KEY!);
+ const account = await db.account.findUnique({ where: { id: data.id } });
+ return account?.role
 }
 
 export async function logout() {

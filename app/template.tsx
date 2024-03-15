@@ -1,11 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
 import { animatePageIn } from "@/app/(components)/transition/animations";
-import Image from "next/image"
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { RotateMotion } from "./(components)/motion";
 
 export default function Template({ children }: { children: React.ReactNode }) {
+
+ const pathname = usePathname()
+
+ if (pathname.startsWith("/admin")) return <div className="max-w-screen min-h-screen">{children}</div>
+
  useEffect(() => {
   animatePageIn();
  }, []);

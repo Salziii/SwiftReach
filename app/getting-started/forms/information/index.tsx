@@ -21,15 +21,18 @@ const Information = ({
  const [loading, setLoading] = useState(false);
 
  const [name, setName] = useState("");
- const [nameError, setNameError] = useState(false);
+ const [nameError, setNameError] = useState<string>("");
 
- const [email, stEmail] = useState("");
- const [emailError, setEmailError] = useState(false);
+ const [email, setEmail] = useState("");
+ const [emailError, setEmailError] = useState<string>("");
+ const validateEmail = (email:string) => {
+  if (emailValid(email)) setEmailError("")
+  else setEmailError("Provide a valid email!")
+  setEmail(email)
+ }
 
  const submit = async (): Promise<boolean> => {
-  if (!(name && email)) {
-   setNameError(!name);
-   setEmailError(!email);
+  if (!name || !email) {
    toast.warning("Whoops!", {
     description: "Please fill out the missing fields!",
    });
@@ -37,7 +40,6 @@ const Information = ({
   }
 
   if (!emailValid(email)) {
-   setEmailError(!email);
    toast.warning("Whoops!", {
     description: "Please provide a valid email!",
    });
@@ -100,7 +102,7 @@ const Information = ({
        label="E-Mail"
        placeholder="contact@swiftreach.de"
        value={email}
-       set={stEmail}
+       set={validateEmail}
        error={emailError}
       />
      </div>

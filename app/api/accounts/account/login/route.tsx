@@ -3,19 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
 export async function PUT(request: NextRequest) {
- const { email, verificationCode, password } = await request.json();
+ const { email, password } = await request.json();
 
  if (!email)
   return NextResponse.json({ error: "Provide A Email!" }, { status: 400 });
 
- if (!verificationCode)
-  return NextResponse.json(
-   { error: "Provide A Verification Code!" },
-   { status: 400 }
-  );
-
- let account = await db.account.findFirst({
-  where: { email: email, verificationCode: null },
+ let account = await db.account.findUnique({
+  where: { email: email },
   select: {
    id: true,
    role: true,
@@ -31,15 +25,23 @@ export async function PUT(request: NextRequest) {
    meetings: { include: { members: true } },
    serviceSales: true,
    subscriptionSales: true,
-  },
- });
+  }
+ })
 
- if (account)
+ if (!account)
   return NextResponse.json(
    {
-    error: "Already verified!",
+    error: `Account Does Not Exist!`,
    },
-   { status: 409 }
+   { status: 404 }
+  );
+
+ if (account.role !== "EMPLOYEE")
+  return NextResponse.json(
+   {
+    error: `Account does not belong to any employee!`,
+   },
+   { status: 403 }
   );
 
  if (!password)
@@ -49,7 +51,7 @@ export async function PUT(request: NextRequest) {
   );
 
  account = await db.account.findFirst({
-  where: { AND: { email: email, verificationCode: verificationCode } },
+  where: { AND: { email: email, password: password } },
   select: {
    id: true,
    role: true,
@@ -65,40 +67,16 @@ export async function PUT(request: NextRequest) {
    meetings: { include: { members: true } },
    serviceSales: true,
    subscriptionSales: true,
-  }
+  },
  });
 
  if (!account)
   return NextResponse.json(
    {
-    error: `There Is No Account With Email '${email}' And Verification Code '${verificationCode}'!`,
+    error: `Password wrong!`
    },
-   { status: 404 }
+   { status: 403 }
   );
-
- account = await db.account.update({
-  where: { email: email, verificationCode: verificationCode },
-  data: {
-   verificationCode: null,
-   password: password,
-  },
-  select: {
-   id: true,
-   role: true,
-   name: true,
-   email: true,
-   company: {
-    include: {
-     steps: { include: { step: true } },
-     painpoints: true,
-     members: true,
-    },
-   },
-   meetings: { include: { members: true } },
-   serviceSales: true,
-   subscriptionSales: true,
-  }
- });
 
  const response = NextResponse.json(account, { status: 200 });
 
