@@ -12,7 +12,6 @@ import Image from "next/image";
 const pages = [
  { label: "Home", icon: Home, ref: "/admin/dashboard" },
  { label: "Kunden", icon: Users2, ref: "/admin/customers" },
- { label: "Team", icon: PiggyBankIcon, ref: "/admin/team" },
  { label: "Emails", icon: Mail, ref: "/admin/emails" }
 ]
 
@@ -38,8 +37,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
       </div>
      </div>
      {
-      pages.map((page: any) => (
-       <a href={page.ref} className="w-full px-4 py-3 flex gap-4 border-b hover:bg-muted">
+      pages.map((page: any, i) => (
+       <a key={i} href={page.ref} className="w-full px-4 py-3 flex gap-4 border-b hover:bg-muted">
         <page.icon size={32} />
         <div className="h-full flex flex-col justify-center">
          <h1 className="font-bold text-xl">{page.label}</h1>

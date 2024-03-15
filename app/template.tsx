@@ -8,13 +8,13 @@ import { RotateMotion } from "./(components)/motion";
 
 export default function Template({ children }: { children: React.ReactNode }) {
 
- const pathname = usePathname()
-
- if (pathname.startsWith("/admin")) return <div className="max-w-screen min-h-screen">{children}</div>
-
  useEffect(() => {
   animatePageIn();
  }, []);
+
+ const pathname = usePathname()
+
+ if (pathname.startsWith("/admin")) return <div className="max-w-screen min-h-screen">{children}</div>
 
  return (
   <div className="max-w-screen min-h-screen">
