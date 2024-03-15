@@ -11,7 +11,7 @@ export default function RootLayout({
  children: React.ReactNode;
 }) {
  return (
-  <RequireEmployee path="/">
+  <RequireEmployee path="/login">
    {children}
   </RequireEmployee>
  );

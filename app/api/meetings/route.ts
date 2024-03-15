@@ -5,29 +5,6 @@ import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import { sendMeetingMail } from "../(utils)/mails";
 
-export async function GET() {
- try {
-  const meetings = await db.meeting.findMany({
-   select: {
-    id: true,
-    link: true,
-    label: true,
-    end: true,
-    start: true,
-    members: true,
-   },
-  });
-
-  return NextResponse.json(meetings, { status: 200 });
- } catch (err) {
-  console.log(err);
-  return NextResponse.json(
-   { error: "Internal Server Error - We are working on it!" },
-   { status: 500 }
-  );
- }
-}
-
 export async function POST(request: NextRequest) {
  try {
   const token: string | undefined = request.cookies.get("token")?.value;

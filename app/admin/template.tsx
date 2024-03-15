@@ -6,13 +6,16 @@ import {
  ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { Home, Mail, PiggyBankIcon, Users2 } from "lucide-react";
+import { Home, Mail, Users2 } from "lucide-react";
 import Image from "next/image";
+import { ReactNode } from "react";
+import { BsBuilding } from "react-icons/bs";
 
-const pages = [
- { label: "Home", icon: Home, ref: "/admin/dashboard" },
- { label: "Kunden", icon: Users2, ref: "/admin/customers" },
- { label: "Emails", icon: Mail, ref: "/admin/emails" }
+const pages: { label: string; icon: ReactNode; ref: string; }[] = [
+ { label: "Home", icon: <Home size={32} />, ref: "/admin/dashboard" },
+ { label: "Unternehmen", icon: <BsBuilding size={32} />, ref: "/admin/companys" },
+ { label: "Emails", icon: <Mail size={32} />, ref: "/admin/emails" },
+ { label: "Meetings", icon: <Users2 size={32} />, ref: "/admin/meetings" },
 ]
 
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -39,7 +42,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
      {
       pages.map((page: any, i) => (
        <a key={i} href={page.ref} className="w-full px-4 py-3 flex gap-4 border-b hover:bg-muted">
-        <page.icon size={32} />
+        <div className="flex flex-col justify-center">
+         {page.icon}
+        </div>
         <div className="h-full flex flex-col justify-center">
          <h1 className="font-bold text-xl">{page.label}</h1>
         </div>
